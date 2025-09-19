@@ -9,6 +9,16 @@ import MarketVistaImg from "@/assets/images/projects/market_vista.png";
 import RokarAfricaImg from "@/assets/images/projects/rokar_africa.png";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.png";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
+import QuerbarImg from "@/assets/images/projects/querbar.png";
+
+// Service Images
+import AppDevImg from "@/assets/images/services/app_dev.jpg";
+import MobileAppDevImg from "@/assets/images/services/mobile_app_dev.jpg";
+import WebsiteDevImg from "@/assets/images/services/website_dev.jpg";
+import AIEngineeringImg from "@/assets/images/services/neural_network.jpg";
+import PromptEngineeringImg from "@/assets/images/services/prompt_engineering.jpg";
+import DataAnalyticsImg from "@/assets/images/services/data_analytics.jpg";
+import ProgrammingEducationImg from "@/assets/images/services/scratch_programming.jpg";
 
 export const emailAddress = "mrodin.karadeniz@gmail.com";
 
@@ -242,7 +252,7 @@ export const navItems = [
 export const projects = [
   {
     title: "Ginny the Bartender",
-    type: "Web & Mobile App",
+    type: "Cocktail Information & Recommendation System • Web & Mobile App",
     description:
       "A web and mobile app that allows users to create and share cocktails, and search for cocktails by name or ingredients.",
     year: 2025,
@@ -251,7 +261,7 @@ export const projects = [
   },
   {
     title: "Rokar Africa",
-    type: "Company Website",
+    type: "Agriculture & Recycling • Company Website",
     description:
       "A company website that showcases the company's products and services on agriculture, recycling, and sustainable development.",
     year: 2024,
@@ -260,7 +270,7 @@ export const projects = [
   },
   {
     title: "Rokar Global",
-    type: "Company Website",
+    type: "Property Management • Company Website",
     description:
       "A company website that showcases the company's products and services on construction and property management.",
     year: 2024,
@@ -269,7 +279,7 @@ export const projects = [
   },
   {
     title: "CIYANO",
-    type: "Company Website",
+    type: "Environment-friendly Packaging • Company Website",
     description:
       "A company website that showcases the company's products and services on environment-friendly packaging.",
     year: 2025,
@@ -278,7 +288,7 @@ export const projects = [
   },
   {
     title: "MarketVista",
-    type: "Company Website",
+    type: "Real-time Shelf Data Platform • Company Website",
     description:
       "A company website that showcases the company's products and services on real-time shelf data platform.",
     year: 2025,
@@ -287,7 +297,7 @@ export const projects = [
   },
   {
     title: "By Others Corp.",
-    type: "Company Website",
+    type: "Construction • Company Website",
     description:
       "Specializing in the design, fabrication, and installation of high-quality building envelope systems for commercial and institutional projects.",
     year: 2025,
@@ -296,19 +306,46 @@ export const projects = [
   },
   {
     title: "Ceren D.",
-    type: "Personal Website",
+    type: "PhD Candidate • Personal Website",
     description:
       "A portfolio website for a PhD candidate, showcasing her research and publications.",
     year: 2025,
     demo: "https://ceren-demirci.vercel.app/",
     image: CerenDImg,
   },
+  {
+    title: "Querbar",
+    type: "Bar • Company Website ",
+    description: "A Bar website.",
+    year: 2025,
+    demo: "https://querbar.de/",
+    image: QuerbarImg,
+  },
 ];
 
 export const services = [
   {
-    title: "App & Web Development",
-    desc: "I design and build responsive, high-performance websites tailored to your unique goals. Whether you need a portfolio, an e-commerce platform, or a dynamic web app, I ensure your digital presence is impactful and functional.",
+    title: "Software Development",
+    desc: "Enterprise-grade backend systems and scalable applications built with modern frameworks. I develop robust solutions using Java, Spring Boot, and cloud-native technologies with full DevOps integration.",
+    tools: [
+      "Java",
+      "Spring Boot",
+      "Python",
+      "Node.js",
+      "NPM",
+      "Git",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "CI/CD",
+    ],
+    image: AppDevImg,
+    imgSrc:
+      "https://unsplash.com/photos/two-black-flat-screen-computer-monitors-LJ9KY8pIH3E",
+  },
+  {
+    title: "Website Development",
+    desc: "Modern, responsive web applications built with React and Next.js. I create fast, SEO-optimized sites with integrated backend services and real-time functionality.",
     tools: [
       "React",
       "Next.js",
@@ -317,12 +354,23 @@ export const services = [
       "JavaScript",
       "HTML",
       "CSS",
+      "Supabase",
+      "Appwrite",
     ],
-    image: CocktailsImg,
+    image: WebsiteDevImg,
+    imgSrc: "https://unsplash.com/photos/a-computer-on-a-desk-FQ3lFA4Zi58",
+  },
+  {
+    title: "Mobile App Development",
+    desc: "Cross-platform mobile applications developed with React Native and Expo. I build native-feeling apps that work seamlessly on both iOS and Android with optimized performance.",
+    tools: ["React Native", "Expo", "TailwindCSS"],
+    image: MobileAppDevImg,
+    imgSrc:
+      "https://unsplash.com/photos/person-using-black-smartphone-with-gray-and-pink-case-cqFKhqv6Ong",
   },
   {
     title: "AI & Machine Learning",
-    desc: "I develop intelligent systems and algorithms to automate processes, uncover patterns in data, and make predictions. From personalized recommendations to data-driven business solutions, I bring AI to life for your specific needs.",
+    desc: "Intelligent systems and predictive models using deep learning frameworks. I develop custom AI solutions from neural networks to large language models for automation and decision support.",
     tools: [
       "Neural Networks",
       "Deep Learning",
@@ -334,29 +382,28 @@ export const services = [
       "Hugging Face",
       "NLTK",
     ],
-    image: DaytradingImg,
+    image: AIEngineeringImg,
+    imgSrc:
+      "https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A",
   },
   {
     title: "Prompt Engineering",
-    desc: "I specialize in crafting and optimizing prompts for AI models, ensuring they deliver accurate and contextually relevant outputs. This helps businesses leverage AI effectively for customer interactions, content generation, and automation.",
+    desc: "Specialized AI prompt optimization and model fine-tuning services. I craft effective prompts and implement LangChain workflows to maximize AI model performance for your specific use cases.",
     tools: ["OpenAI", "Llama 2", "LangChain", "Hugging Face"],
-    image: CocktailsImg,
-  },
-  {
-    title: "Quantitative Finance",
-    desc: "I develop algorithms and environments for trading. With expertise in creating automated trading systems, I help optimize trading performance and generate actionable insights in financial markets.",
-    tools: ["Python", "Pandas", "NumPy", "PyTorch", "Backtrader", "MetaTrader"],
-    image: DaytradingImg,
+    image: PromptEngineeringImg,
+    imgSrc:
+      "https://unsplash.com/photos/a-person-typing-on-a-laptop-on-a-table-adrO5seSbBE",
   },
   {
     title: "Data Analytics",
-    desc: "I transform raw data into actionable insights, helping you make informed decisions. From building dashboards to conducting predictive analysis, I make data work for you.",
+    desc: "Data-driven insights and visualization solutions using Python and business intelligence tools. I transform complex datasets into clear, actionable reports and interactive dashboards.",
     tools: ["Python", "Pandas", "Power BI", "Tableau"],
-    image: CocktailsImg,
+    image: DataAnalyticsImg,
+    imgSrc: "https://unsplash.com/photos/graphical-user-interface--WXQm_NTK0U",
   },
   {
     title: "Programming & Robotics Education",
-    desc: "As an experienced instructor on coding and robotics concepts, I empower learners with practical knowledge in programming and robotics. From coding fundamentals to advanced concepts, I tailor lessons to your skill level and goals, making complex topics accessible and enjoyable.",
+    desc: "Hands-on coding and robotics instruction using LEGO Mindstorms and modern programming languages. I teach practical skills from basic concepts to advanced robotics applications.",
     tools: [
       "Python",
       "LEGO Spike Prime",
@@ -365,7 +412,9 @@ export const services = [
       "Arduino",
       "JavaScript",
     ],
-    image: CocktailsImg,
+    image: ProgrammingEducationImg,
+    imgSrc:
+      "https://unsplash.com/photos/person-holding-white-ipad-on-white-table-hLvQ4-QEBAE",
   },
 ];
 

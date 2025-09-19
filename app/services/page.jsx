@@ -118,12 +118,11 @@ const Services = () => {
             <Image
               src={activeService === -1 ? RK : services[activeService].image}
               alt="service_img"
-              className="w-full h-full object-cover brightness-[.35]"
-              placeholder="blur"
+              className="w-full h-full object-cover brightness-[.4] blur-sm"
             />
           </motion.div>
 
-          <div className="min-h-[560px] pl-8 flex flex-col items-start justify-center text-left text-secondary z-[2]">
+          <div className="min-h-[560px] pl-8 flex flex-col items-start justify-center text-left text-stone-200 z-[2]">
             <motion.h2
               className="h2 mb-6"
               key={
