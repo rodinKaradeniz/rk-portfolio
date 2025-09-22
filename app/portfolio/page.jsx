@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 import { icons, projects } from "@/data";
 import Image from "next/image";
-import RK from "@/assets/images/rk.jpg";
+import DevImg from "@/assets/images/coding.jpg";
 
 const Archive = () => {
   const [activeProject, setActiveProject] = useState(-1);
@@ -28,9 +28,9 @@ const Archive = () => {
           transition={{ duration: 0.3 }}
         >
           <Image
-            src={activeProject === -1 ? RK : projects[activeProject].image}
+            src={activeProject === -1 ? DevImg : projects[activeProject].image}
             alt="project_image"
-            className="w-full h-full object-cover brightness-[.4] blur-lg"
+            className="w-full h-full object-cover brightness-[.4] blur-md"
             placeholder="blur"
           />
         </motion.div>

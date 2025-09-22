@@ -1,15 +1,12 @@
-import CocktailsImg from "@/assets/images/cocktails.jpg";
-import DaytradingImg from "@/assets/images/daytrading.jpg";
-
 // Project Images
-import ByOthersImg from "@/assets/images/projects/by_others.png";
-import CerenDImg from "@/assets/images/projects/ceren_demirci.png";
+import ByOthersImg from "@/assets/images/projects/by_others.jpg";
+import CerenDImg from "@/assets/images/projects/ceren_d.jpg";
 import CIYANOImg from "@/assets/images/projects/ciyano.png";
-import MarketVistaImg from "@/assets/images/projects/market_vista.png";
-import RokarAfricaImg from "@/assets/images/projects/rokar_africa.png";
-import RokarGlobalImg from "@/assets/images/projects/rokar_global.png";
+import MarketVistaImg from "@/assets/images/projects/market_vista.jpg";
+import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
+import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
-import QuerbarImg from "@/assets/images/projects/querbar.png";
+import QuerbarImg from "@/assets/images/projects/querbar.jpg";
 
 // Service Images
 import AppDevImg from "@/assets/images/services/app_dev.jpg";
@@ -258,6 +255,7 @@ export const projects = [
     year: 2025,
     demo: "",
     image: GinnyImg,
+    highlight: true,
   },
   {
     title: "Rokar Africa",
@@ -267,6 +265,7 @@ export const projects = [
     year: 2024,
     demo: "https://rokarafrica.com",
     image: RokarAfricaImg,
+    highlight: true,
   },
   {
     title: "Rokar Global",
@@ -276,6 +275,7 @@ export const projects = [
     year: 2024,
     demo: "https://rokarglobal.com",
     image: RokarGlobalImg,
+    highlight: false,
   },
   {
     title: "CIYANO",
@@ -285,6 +285,7 @@ export const projects = [
     year: 2025,
     demo: "https://ciyano.com",
     image: CIYANOImg,
+    highlight: true,
   },
   {
     title: "MarketVista",
@@ -294,15 +295,17 @@ export const projects = [
     year: 2025,
     demo: "https://marketvista.com",
     image: MarketVistaImg,
+    highlight: false,
   },
   {
     title: "By Others Corp.",
-    type: "Construction • Company Website",
+    type: "Construction • Web Application",
     description:
       "Specializing in the design, fabrication, and installation of high-quality building envelope systems for commercial and institutional projects.",
     year: 2025,
     demo: "https://by-others.ca/",
     image: ByOthersImg,
+    highlight: false,
   },
   {
     title: "Ceren D.",
@@ -312,6 +315,7 @@ export const projects = [
     year: 2025,
     demo: "https://ceren-demirci.vercel.app/",
     image: CerenDImg,
+    highlight: false,
   },
   {
     title: "Querbar",
@@ -320,6 +324,7 @@ export const projects = [
     year: 2025,
     demo: "https://querbar.de/",
     image: QuerbarImg,
+    highlight: false,
   },
 ];
 
@@ -426,10 +431,6 @@ export const socialMediaIcons = [
   {
     icon: icons.github,
     href: "https://github.com/rodinKaradeniz",
-  },
-  {
-    icon: icons.instagram,
-    href: "https://www.instagram.com/rodinkaradeniz/",
   },
   {
     icon: icons.x,

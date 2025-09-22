@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
-import RK from "@/assets/images/rk.jpg";
+import TorontoImg from "@/assets/images/toronto.jpg";
 
 import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
@@ -20,10 +20,11 @@ const Contact = () => {
     <div className="w-screen md:h-screen flex flex-col md:flex-row items-center justify-center gap-5">
       <div className="w-full md:w-1/2 h-1/3 md:h-full relative text-neutral-100">
         <Image
-          src={RK}
+          src={TorontoImg}
           alt="rk"
-          className="absolute w-full h-full object-cover z-[-1] brightness-50"
+          className="absolute w-full h-full object-cover z-[-2] brightness-[.4]"
         />
+        <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>
 
         <div className="w-full h-full p-8 md:p-0 md:pr-6 flex flex-col justify-center items-start md:items-end">
           <h1 className="h1 text-right mb-0 md:mb-12">

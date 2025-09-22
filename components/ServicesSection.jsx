@@ -2,8 +2,8 @@
 import { useRef } from "react";
 
 import Image from "next/image";
-import Mixologist from "@/assets/images/mixologist.jpg";
-import TorontoImg from "@/assets/images/toronto_discover.jpg";
+import Dev from "@/assets/images/services/app_dev.jpg";
+import TorontoImg from "@/assets/images/toronto.jpg";
 
 import { icons } from "@/data";
 import { motion, useTransform, useScroll } from "framer-motion";
@@ -32,9 +32,10 @@ const ServicesSection = () => {
             <div className="z-[-1] w-full h-screen overflow-hidden">
               <motion.div className="w-full h-full" style={{ scale: scale1 }}>
                 <Image
-                  src={Mixologist}
+                  src={Dev}
                   alt="about_me_img_1"
                   className="w-full h-screen object-cover"
+                  style={{ objectPosition: "0% center" }}
                 />
               </motion.div>
             </div>
@@ -111,7 +112,7 @@ const ServicesSection = () => {
           />
 
           <Image
-            src={Mixologist}
+            src={Dev}
             alt="website-img"
             className="mt-16 -ml-2 w-[135px] h-[200px] object-cover object-center"
           />

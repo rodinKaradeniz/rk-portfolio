@@ -4,7 +4,7 @@ import { act, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { services, icons } from "@/data";
-import RK from "@/assets/images/rk.jpg";
+import WorkImg from "@/assets/images/work.jpg";
 
 import Button from "@/components/Button";
 import BottomDrawer from "@/components/BottomDrawer";
@@ -19,11 +19,12 @@ const Services = () => {
       <div className="md:hidden w-full h-screen overflow-hidden">
         <div className="h-[25vh] relative text-secondary">
           <Image
-            src={RK}
+            src={WorkImg}
             alt="rk"
             quality={100}
-            className="absolute w-full h-full object-cover z-[-1] brightness-[.3]"
+            className="absolute w-full h-full object-cover z-[-1] brightness-[.4]"
           />
+          <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>
 
           <div className="max-w-sm h-full p-8 flex flex-col justify-center">
             <h2 className="h2 mb-2">Services</h2>
@@ -116,7 +117,9 @@ const Services = () => {
             transition={{ duration: 0.3 }}
           >
             <Image
-              src={activeService === -1 ? RK : services[activeService].image}
+              src={
+                activeService === -1 ? WorkImg : services[activeService].image
+              }
               alt="service_img"
               className="w-full h-full object-cover brightness-[.4] blur-sm"
             />

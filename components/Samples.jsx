@@ -5,15 +5,13 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import Mixologist from "@/assets/images/mixologist.jpg";
-import TorontoImg from "@/assets/images/toronto_discover.jpg";
-import CrowdsourcingImg from "@/assets/images/crowdsourcing.jpg";
 import Button from "./Button";
-import { icons } from "@/data";
+import { icons, projects } from "@/data";
+import { renderToString } from "react-dom/server";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useGSAPAnimations = (pathname) => {
+const useGSAPAnimations = (pathname, highlightedProjects) => {
   useGSAP(() => {
     if (pathname === "/") {
       const pinnedSection = document.querySelector(".pinned");
@@ -69,34 +67,16 @@ const useGSAPAnimations = (pathname) => {
 
       const updateInfoContent = (index) => {
         const infoItems = document.querySelectorAll(".info > div p");
-        const link = document.querySelector(".info .link a");
+        const linkContainer = document.querySelector(".info .link");
 
-        const data = [
-          {
-            title: "Marty the Bartender",
-            tagline: "Cocktail Information and Recommendation System",
-            year: "2024",
-            tag: "Mobile Native App",
-            link: "#",
-          },
-          {
-            title: "ML & Quant Strategies for Trading",
-            tagline: "Algorithmic Trading",
-            year: "2024",
-            tag: "Jupyter Notebook",
-            link: "#",
-          },
-          {
-            title: "Jane Doe",
-            tagline: "Personal Portfolio",
-            year: "2024",
-            tag: "Website",
-            link: "#",
-          },
+        const item = highlightedProjects[index];
+        const typeParts = item.type.split("•");
+        const contentArray = [
+          item.title,
+          typeParts[0] ? typeParts[0].trim() : item.type,
+          item.year.toString(),
+          typeParts[1] ? typeParts[1].trim() : "",
         ];
-
-        const item = data[index];
-        const contentArray = [item.title, item.tagline, item.year, item.tag];
         infoItems.forEach((element, i) => {
           element.innerHTML = "";
           contentArray[i].split("").forEach((letter, idx) => {
@@ -112,7 +92,29 @@ const useGSAPAnimations = (pathname) => {
             });
           });
         });
-        link.setAttribute("href", item.link);
+
+        // Update link/button based on demo availability
+        if (item.demo && item.demo !== "") {
+          const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10"/><path d="M8 7l9 0l0 9"/></svg>`;
+
+          linkContainer.innerHTML = `
+            <a
+              href="${item.demo}"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-row gap-2 items-center whitespace-nowrap"
+            >
+              <span class="text-lg tracking-tight">View Demo</span>
+              <div class="w-5 h-5">${arrowIcon}</div>
+            </a>
+          `;
+        } else {
+          linkContainer.innerHTML = `
+            <div class="flex gap-2 items-center">
+              <span class="text-lg tracking-tight">Coming Soon</span>
+            </div>
+          `;
+        }
       };
 
       updateInfoContent(0);
@@ -160,7 +162,8 @@ const useGSAPAnimations = (pathname) => {
 
 const Samples = () => {
   const pathname = usePathname();
-  useGSAPAnimations(pathname);
+  const highlightedProjects = projects.filter((project) => project.highlight);
+  useGSAPAnimations(pathname, highlightedProjects);
 
   return (
     <section className="container">
@@ -201,11 +204,7 @@ const Samples = () => {
         </div>
 
         {/* Images */}
-        {[
-          { src: TorontoImg, alt: "Toronto Discovery" },
-          { src: Mixologist, alt: "Mixologist" },
-          { src: CrowdsourcingImg, alt: "Crowdsourcing" },
-        ].map((img, i) => (
+        {highlightedProjects.map((project, i) => (
           <div
             key={i}
             className="img absolute top-[37.5%] left-[30%] md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 scale-110 w-[45%] md:w-[30%] h-[30%] md:h-[65%] z-[-1]"
@@ -215,8 +214,8 @@ const Samples = () => {
             id={`img-${i + 1}`}
           >
             <Image
-              src={img.src}
-              alt={img.alt}
+              src={project.image}
+              alt={project.title}
               className="w-full h-full object-cover"
               style={{ filter: "contrast(1) brightness(1)" }}
             />

@@ -33,7 +33,7 @@ const Footer = () => {
           </TransitionLink>
         </div>
 
-        <div className="w-full md:w-[50%] flex flex-col md:flex-row items-center justify-center gap-12">
+        <div className="w-full md:w-[50%] flex flex-col md:flex-row items-center md:items-start justify-center gap-12">
           <div className="w-1/2">
             <div className="flex flex-col items-center md:items-start gap-3">
               {navItems.map((item, index) => (
@@ -44,8 +44,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="w-1/2 space-y-8">
-            <div className="flex flex-col items-center md:items-start justify-center">
+          <div className="w-1/2">
+            <div className="flex flex-col items-center md:items-start justify-end">
               <p className="mb-2">Mail:</p>
               <Button
                 title="mrodin.karadeniz@gmail.com"
@@ -56,17 +56,6 @@ const Footer = () => {
                 onClick={handleCopy}
               />
             </div>
-
-            <div className="flex flex-col items-center md:items-start justify-center">
-              <p className="mb-2">See also:</p>
-              <div className="flex flex-col items-center md:items-start gap-1">
-                {navItems.slice(0, 2).map((item, index) => (
-                  <TransitionLink key={index} href={item.href}>
-                    {item.name}
-                  </TransitionLink>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -76,7 +65,7 @@ const Footer = () => {
           <h2 className="text-5xl md:text-6xl font-light">Rodin Karadeniz</h2>
 
           <h3 className="text-xs md:text-xl text-nowrap mt-4">
-            Software Developer • Machine Learning Engineer • Coding Instructor
+            Software Developer • Machine Learning Engineer • Instructor
           </h3>
         </div>
 
@@ -102,9 +91,9 @@ const Footer = () => {
             RK
           </TransitionLink>
           .{" "}
-          <TransitionLink href="/credits" className="underline">
+          {/* <TransitionLink href="/credits" className="underline">
             See inspirations.
-          </TransitionLink>
+          </TransitionLink> */}
         </p>
       </div>
     </div>
