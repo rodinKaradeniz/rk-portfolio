@@ -437,3 +437,11 @@ export const socialMediaIcons = [
     href: "https://x.com/rodink98",
   },
 ];
+
+// Instead of static imports, use dynamic imports
+export const getProjectImage = async (imageName) => {
+  const { default: image } = await import(
+    `@/assets/images/projects/${imageName}`
+  );
+  return image;
+};

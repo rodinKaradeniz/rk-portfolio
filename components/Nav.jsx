@@ -60,20 +60,32 @@ const Nav = () => {
 
     return (
       <button
-        className={`w-10 h-10 pt-1 rounded-full flex items-center justify-center space-x-0.5 space-y-0.5 border ${
+        className={`w-10 h-10 rounded-full flex items-center justify-center space-x-0.5 space-y-0.5 border ${
           check ? "border-neutral-100" : "border-neutral-900"
-        }`}
+        } ${isAudioPlaying ? "pt-2" : ""}`}
         onClick={toggleAudio}
       >
-        {[1, 2, 3, 4].map((bar) => (
+        {isAudioPlaying ? (
+          // Show animated bars when music is playing
+          [1, 2, 3, 4].map((bar) => (
+            <div
+              key={bar}
+              className={`indicator-line active ${
+                check ? "bg-neutral-100" : "bg-neutral-900"
+              }`}
+              style={{ animationDelay: `${bar * 0.1}s` }}
+            />
+          ))
+        ) : (
+          // Show music note icon when music is not playing
           <div
-            key={bar}
-            className={`indicator-line ${isAudioPlaying ? "active" : ""} ${
-              check ? "bg-neutral-100" : "bg-neutral-900"
+            className={`w-5 h-5 ${
+              check ? "text-neutral-100" : "text-neutral-900"
             }`}
-            style={{ animationDelay: `${bar * 0.1}s` }}
-          />
-        ))}
+          >
+            {icons.music}
+          </div>
+        )}
       </button>
     );
   };
@@ -84,7 +96,7 @@ const Nav = () => {
         <div className="w-full fixed top-10 z-40 px-12 md:px-0 flex items-center justify-between md:justify-center gap-8">
           <motion.div
             initial={{
-              opacity: 1,
+              opacity: 0,
               y: -100,
             }}
             animate={{
@@ -103,7 +115,7 @@ const Nav = () => {
 
           <motion.div
             initial={{
-              opacity: 1,
+              opacity: 0,
               y: -100,
             }}
             animate={{

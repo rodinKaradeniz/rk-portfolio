@@ -1,5 +1,5 @@
 {
-  "name": "rk-portfolio-v4",
+  "name": "rk-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "gsap": "^3.12.5",
     "lenis": "^1.1.14",
     "lucide-react": "^0.462.0",
-    "next": "14.2.13",
+    "next": "^15.0.3",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
