@@ -270,7 +270,6 @@ const Samples = () => {
               className="w-full h-full object-cover"
               style={{ filter: "contrast(1) brightness(1)" }}
               priority={i === 0}
-              loading={i === 0 ? "eager" : "lazy"}
               sizes="(max-width: 768px) 45vw, 30vw"
             />
           </div>

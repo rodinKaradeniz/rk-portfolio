@@ -7,6 +7,7 @@ import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
 import QuerbarImg from "@/assets/images/projects/querbar.jpg";
+import RKImg from "@/assets/images/rk.jpg";
 
 // Service Images
 import AppDevImg from "@/assets/images/services/app_dev.jpg";
@@ -254,6 +255,7 @@ export const projects = [
       "A web and mobile app that allows users to create and share cocktails, and search for cocktails by name or ingredients.",
     year: 2025,
     demo: "",
+    github: "https://github.com/tugayapucu/Ginny-PersonalBartender",
     image: GinnyImg,
     highlight: true,
   },
@@ -264,6 +266,7 @@ export const projects = [
       "A company website that showcases the company's products and services on agriculture, recycling, and sustainable development.",
     year: 2024,
     demo: "https://rokarafrica.com",
+    github: "",
     image: RokarAfricaImg,
     highlight: true,
   },
@@ -274,6 +277,7 @@ export const projects = [
       "A company website that showcases the company's products and services on construction and property management.",
     year: 2024,
     demo: "https://rokarglobal.com",
+    github: "",
     image: RokarGlobalImg,
     highlight: false,
   },
@@ -284,6 +288,7 @@ export const projects = [
       "A company website that showcases the company's products and services on environment-friendly packaging.",
     year: 2025,
     demo: "https://ciyano.com",
+    github: "",
     image: CIYANOImg,
     highlight: true,
   },
@@ -294,6 +299,7 @@ export const projects = [
       "A company website that showcases the company's products and services on real-time shelf data platform.",
     year: 2025,
     demo: "https://marketvista.com",
+    github: "",
     image: MarketVistaImg,
     highlight: false,
   },
@@ -304,6 +310,7 @@ export const projects = [
       "Specializing in the design, fabrication, and installation of high-quality building envelope systems for commercial and institutional projects.",
     year: 2025,
     demo: "https://by-others.ca/",
+    github: "",
     image: ByOthersImg,
     highlight: false,
   },
@@ -314,6 +321,7 @@ export const projects = [
       "A portfolio website for a PhD candidate, showcasing her research and publications.",
     year: 2025,
     demo: "https://ceren-demirci.vercel.app/",
+    github: "",
     image: CerenDImg,
     highlight: false,
   },
@@ -323,7 +331,18 @@ export const projects = [
     description: "A Bar website.",
     year: 2025,
     demo: "https://querbar.de/",
+    github: "",
     image: QuerbarImg,
+    highlight: false,
+  },
+  {
+    title: "RK",
+    type: "Personal Website ",
+    description: "I have built my own website as well. Duh.",
+    year: 2025,
+    demo: "https://rodinkaradeniz.com",
+    github: "https://github.com/rodinKaradeniz/rk-portfolio",
+    image: RKImg,
     highlight: false,
   },
 ];

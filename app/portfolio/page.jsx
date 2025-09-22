@@ -88,44 +88,50 @@ const Archive = () => {
                   {projects[activeProject].description}
                 </motion.p>
 
-                <a
-                  href={projects[activeProject].demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.div
-                    key={activeProject + "a"}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                  >
-                    <Button
-                      title={"View Demo"}
-                      variant="outline-secondary"
-                      className="mb-2"
-                      IconRight={icons.arrowupright}
-                    />
-                  </motion.div>
-                </a>
+                {projects[activeProject].demo &&
+                  projects[activeProject].demo !== "" && (
+                    <a
+                      href={projects[activeProject].demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        key={activeProject + "a"}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
+                      >
+                        <Button
+                          title={"View Live Demo"}
+                          variant="outline-secondary"
+                          className="mb-2"
+                          IconRight={icons.arrowupright}
+                        />
+                      </motion.div>
+                    </a>
+                  )}
 
-                <a
-                  href={projects[activeProject].github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.div
-                    key={activeProject + "a"}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                  >
-                    <Button
-                      title={"View Codebase"}
-                      variant="outline-secondary"
-                      IconRight={icons.arrowupright}
-                    />
-                  </motion.div>
-                </a>
+                {projects[activeProject].github &&
+                  projects[activeProject].github !== "" && (
+                    <a
+                      href={projects[activeProject].github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        key={activeProject + "a"}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                      >
+                        <Button
+                          title={"View Codebase"}
+                          variant="outline-secondary"
+                          IconRight={icons.arrowupright}
+                        />
+                      </motion.div>
+                    </a>
+                  )}
               </div>
             </div>
           )}
