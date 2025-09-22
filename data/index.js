@@ -256,7 +256,7 @@ export const projects = [
     description:
       "A web and mobile app that allows users to create and share cocktails, and search for cocktails by name or ingredients.",
     year: 2025,
-    demo: "https://ginny-the-bartender.vercel.app/",
+    demo: "",
     image: GinnyImg,
   },
   {
