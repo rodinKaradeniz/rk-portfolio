@@ -298,7 +298,7 @@ export const projects = [
     description:
       "A company website that showcases the company's products and services on real-time shelf data platform.",
     year: 2025,
-    demo: "https://marketvista.com",
+    demo: "https://market-vista.com",
     github: "",
     image: MarketVistaImg,
     highlight: false,
