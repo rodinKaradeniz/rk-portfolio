@@ -1,12 +1,12 @@
 // Project Images
-import ByOthersImg from "@/assets/images/projects/by_others.jpg";
+// import ByOthersImg from "@/assets/images/projects/by_others.jpg";
 import CerenDImg from "@/assets/images/projects/ceren_d.jpg";
 import CIYANOImg from "@/assets/images/projects/ciyano.png";
 import MarketVistaImg from "@/assets/images/projects/market_vista.jpg";
 import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
-import QuerbarImg from "@/assets/images/projects/querbar.jpg";
+import QuerbarImg from "@/assets/images/projects/querbar.webp";
 import RKImg from "@/assets/images/rk.jpg";
 
 // Service Images
@@ -260,6 +260,16 @@ export const projects = [
     highlight: true,
   },
   {
+    title: "RK Reservations",
+    type: "Reservation System • Web Application",
+    description: "A reservation system for a restaurant.",
+    year: 2025,
+    demo: "https://rk-reservations.vercel.app/",
+    github: "",
+    image: RKReservationsImg,
+    highlight: false,
+  },
+  {
     title: "Rokar Africa",
     type: "Agriculture & Recycling • Company Website",
     description:
@@ -292,6 +302,37 @@ export const projects = [
     image: CIYANOImg,
     highlight: true,
   },
+  // {
+  //   title: "By Others Corp.",
+  //   type: "Construction • Web Application",
+  //   description:
+  //     "Specializing in the design, fabrication, and installation of high-quality building envelope systems for commercial and institutional projects.",
+  //   year: 2025,
+  //   demo: "https://by-others.ca/",
+  //   github: "",
+  //   image: ByOthersImg,
+  //   highlight: false,
+  // },
+  {
+    title: "Perihan Karadeniz",
+    type: "Consultant • Business Website",
+    description: "A website for business and personal consulting services.",
+    year: 2025,
+    demo: "https://perihankaradeniz.com/",
+    github: "",
+    image: null,
+    highlight: false,
+  },
+  {
+    title: "Querbar",
+    type: "Bar • Company Website ",
+    description: "A Bar website.",
+    year: 2025,
+    demo: "https://querbar.de/",
+    github: "",
+    image: QuerbarImg,
+    highlight: false,
+  },
   {
     title: "MarketVista",
     type: "Real-time Shelf Data Platform • Company Website",
@@ -301,17 +342,6 @@ export const projects = [
     demo: "https://market-vista.com",
     github: "",
     image: MarketVistaImg,
-    highlight: false,
-  },
-  {
-    title: "By Others Corp.",
-    type: "Construction • Web Application",
-    description:
-      "Specializing in the design, fabrication, and installation of high-quality building envelope systems for commercial and institutional projects.",
-    year: 2025,
-    demo: "https://by-others.ca/",
-    github: "",
-    image: ByOthersImg,
     highlight: false,
   },
   {
@@ -326,18 +356,8 @@ export const projects = [
     highlight: false,
   },
   {
-    title: "Querbar",
-    type: "Bar • Company Website ",
-    description: "A Bar website.",
-    year: 2025,
-    demo: "https://querbar.de/",
-    github: "",
-    image: QuerbarImg,
-    highlight: false,
-  },
-  {
     title: "RK",
-    type: "Personal Website ",
+    type: "Personal Website",
     description: "I have built my own website as well. Duh.",
     year: 2025,
     demo: "https://rodinkaradeniz.com",
