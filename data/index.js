@@ -266,7 +266,7 @@ export const projects = [
     year: 2025,
     demo: "https://rk-reservations.vercel.app/",
     github: "",
-    image: RKReservationsImg,
+    image: null,
     highlight: false,
   },
   {
