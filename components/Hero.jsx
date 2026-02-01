@@ -23,7 +23,6 @@ const Hero = () => {
           generation of problem solvers, I bring creativity, precision, and
           dedication to every project.
         </p>
-        <p>Based in Toronto.</p>
       </div>
 
       <div className="w-full h-full p-12 flex flex-col items-end justify-end text-right tracking-tight">
