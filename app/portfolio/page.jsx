@@ -10,16 +10,18 @@ import { motion } from "framer-motion";
 import { icons, projects } from "@/data";
 import Image from "next/image";
 import DevImg from "@/assets/images/coding.jpg";
+import { useLocale } from "@/context/LocaleContext";
 
 const Archive = () => {
   const [activeProject, setActiveProject] = useState(-1);
+  const { t } = useLocale();
+
+  const localizedProjects = projects.map((p, i) => ({ ...p, ...t.projectsData[i] }));
 
   return (
     <div className="relative w-full min-h-screen md:h-screen flex flex-col md:flex-row">
       {/* Page Header */}
       <div className="w-full md:w-1/2 h-[25vh] md:h-full relative text-secondary bg-black/80">
-        {/* <div className="absolute inset-0 bg-gradient-primary opacity-50 z-[1]"></div> */}
-
         <motion.div
           key={activeProject + "image"}
           className="absolute inset-0"
@@ -28,7 +30,7 @@ const Archive = () => {
           transition={{ duration: 0.3 }}
         >
           <Image
-            src={activeProject === -1 ? DevImg : projects[activeProject].image}
+            src={activeProject === -1 || !localizedProjects[activeProject].image ? DevImg : localizedProjects[activeProject].image}
             alt="project_image"
             className="w-full h-full object-cover brightness-[.4] blur-md"
             placeholder="blur"
@@ -38,12 +40,8 @@ const Archive = () => {
         <div className="z-[2] absolute inset-0 w-full h-full text-secondary">
           {activeProject === -1 ? (
             <div className="max-w-sm md:max-w-full md:w-full h-full p-8 md:p-0 md:pr-6 flex flex-col justify-center md:items-end md:text-right">
-              <h1 className="h2 mb-2 md:mb-6">Portfolio</h1>
-              <p className="max-w-sm md:max-w-lg">
-                Explore my projects and see the details behind each innovation.
-                Click on any project listed on the right to dive deeper into the
-                story behind the work.
-              </p>
+              <h1 className="h2 mb-2 md:mb-6">{t.portfolioPage.heading}</h1>
+              <p className="max-w-sm md:max-w-lg">{t.portfolioPage.description}</p>
             </div>
           ) : (
             <div className="w-full h-full pr-6 flex justify-end items-center text-right">
@@ -55,7 +53,7 @@ const Archive = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {projects[activeProject].title}
+                  {localizedProjects[activeProject].title}
                 </motion.h2>
 
                 <motion.p
@@ -65,7 +63,7 @@ const Archive = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  {projects[activeProject].tagline}
+                  {localizedProjects[activeProject].tagline}
                 </motion.p>
 
                 <motion.p
@@ -75,7 +73,7 @@ const Archive = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  {projects[activeProject].year}
+                  {localizedProjects[activeProject].year}
                 </motion.p>
 
                 <motion.p
@@ -85,13 +83,13 @@ const Archive = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  {projects[activeProject].description}
+                  {localizedProjects[activeProject].description}
                 </motion.p>
 
-                {projects[activeProject].demo &&
-                  projects[activeProject].demo !== "" && (
+                {localizedProjects[activeProject].demo &&
+                  localizedProjects[activeProject].demo !== "" && (
                     <a
-                      href={projects[activeProject].demo}
+                      href={localizedProjects[activeProject].demo}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -102,7 +100,7 @@ const Archive = () => {
                         transition={{ duration: 0.7, delay: 0.4 }}
                       >
                         <Button
-                          title={"View Live Demo"}
+                          title={t.portfolioPage.viewDemo}
                           variant="outline-secondary"
                           className="mb-2"
                           IconRight={icons.arrowupright}
@@ -111,21 +109,21 @@ const Archive = () => {
                     </a>
                   )}
 
-                {projects[activeProject].github &&
-                  projects[activeProject].github !== "" && (
+                {localizedProjects[activeProject].github &&
+                  localizedProjects[activeProject].github !== "" && (
                     <a
-                      href={projects[activeProject].github}
+                      href={localizedProjects[activeProject].github}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <motion.div
-                        key={activeProject + "a"}
+                        key={activeProject + "b"}
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
                       >
                         <Button
-                          title={"View Codebase"}
+                          title={t.portfolioPage.viewCode}
                           variant="outline-secondary"
                           IconRight={icons.arrowupright}
                         />
@@ -141,7 +139,7 @@ const Archive = () => {
       {/* Mobile: Accordion */}
       <div className="md:hidden w-full h-[75vh] px-12 py-4">
         <ScrollArea className="w-full h-[70vh] my-auto p-4">
-          {projects.map((item, index) => (
+          {localizedProjects.map((item, index) => (
             <Accordion
               key={index}
               title={
@@ -157,19 +155,21 @@ const Archive = () => {
               content={
                 <div className="w-full min-h-[350px] py-8 flex flex-col justify-center items-center gap-8">
                   {/* Images */}
-                  <div className="w-full h-1/2 flex items-center justify-center">
-                    <Image
-                      src={item.image}
-                      alt="website-img"
-                      className="mb-4 -mr-2 w-[180px] h-[120px] object-cover object-center"
-                    />
+                  {item.image && (
+                    <div className="w-full h-1/2 flex items-center justify-center">
+                      <Image
+                        src={item.image}
+                        alt="website-img"
+                        className="mb-4 -mr-2 w-[180px] h-[120px] object-cover object-center"
+                      />
 
-                    <Image
-                      src={item.image}
-                      alt="website-img"
-                      className="mt-4 -ml-2 w-[180px] h-[120px] object-cover object-center"
-                    />
-                  </div>
+                      <Image
+                        src={item.image}
+                        alt="website-img"
+                        className="mt-4 -ml-2 w-[180px] h-[120px] object-cover object-center"
+                      />
+                    </div>
+                  )}
 
                   {/* Text */}
                   <div className="w-full h-1/2 px-2 flex items-center justify-between gap-8">
@@ -196,7 +196,7 @@ const Archive = () => {
       {/* Desktop: List */}
       <div className="hidden md:block w-1/2 h-full px-12 pt-24 pb-8">
         <ScrollArea className="w-full h-[80vh] p-4">
-          {projects.map((item, index) => (
+          {localizedProjects.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -50 }}

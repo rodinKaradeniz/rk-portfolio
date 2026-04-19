@@ -22,12 +22,14 @@ import {
 
 import { cn } from "@/lib/utils";
 import { useAudio } from "@/context/AudioContext";
+import { useLocale } from "@/context/LocaleContext";
 
 const Nav = () => {
   const pathname = usePathname();
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);
   const { isAudioPlaying, toggleAudio } = useAudio();
+  const { locale, toggleLocale, t } = useLocale();
 
   useEffect(() => {
     let timer;
@@ -66,7 +68,6 @@ const Nav = () => {
         onClick={toggleAudio}
       >
         {isAudioPlaying ? (
-          // Show animated bars when music is playing
           [1, 2, 3, 4].map((bar) => (
             <div
               key={bar}
@@ -77,7 +78,6 @@ const Nav = () => {
             />
           ))
         ) : (
-          // Show music note icon when music is not playing
           <div
             className={`w-5 h-5 ${
               check ? "text-neutral-100" : "text-neutral-900"
@@ -89,6 +89,26 @@ const Nav = () => {
       </button>
     );
   };
+
+  const LanguageButton = ({ isTop }) => {
+    const check = pathname === "/" || pathname === "/services" || !isTop;
+
+    return (
+      <button
+        className={`w-10 h-10 rounded-full flex items-center justify-center border ${
+          check
+            ? "border-neutral-100 text-neutral-100"
+            : "border-neutral-900 text-neutral-900"
+        }`}
+        onClick={toggleLocale}
+      >
+        <span className="text-xs font-light tracking-wider">
+          {locale.toUpperCase()}
+        </span>
+      </button>
+    );
+  };
+
   return (
     <>
       {/* Floating Navbar for when users scroll up */}
@@ -134,7 +154,7 @@ const Nav = () => {
                   href={navItem.href}
                   className={cn("relative items-center flex space-x-1 mr-1")}
                 >
-                  <span className="text-sm">{navItem.name}</span>
+                  <span className="text-sm">{t.nav[navItem.key]}</span>
                 </TransitionLink>
               ))}
             </div>
@@ -150,11 +170,11 @@ const Nav = () => {
               <SheetContent className="p-0 border-none text-secondary bg-gradient-primary">
                 <div className="h-full py-10 pl-8 flex flex-col justify-between">
                   <div className="min-h-[50vh] flex flex-col justify-center gap-6">
-                    {navItems.map(({ name, href }) => (
-                      <TransitionLink key={name} href={href}>
+                    {navItems.map(({ key, href }) => (
+                      <TransitionLink key={key} href={href}>
                         <SheetClose asChild>
                           <h3 className="h3 opacity-70 hover:opacity-100 transition-opacity duration-700">
-                            {name}
+                            {t.nav[key]}
                           </h3>
                         </SheetClose>
                       </TransitionLink>
@@ -163,13 +183,21 @@ const Nav = () => {
 
                   <div className="flex flex-col justify-between gap-4">
                     <h2 className="text-4xl font-light">
-                      Rodin <br />
-                      Karadeniz
+                      {t.nav.name.split("\n").map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < t.nav.name.split("\n").length - 1 && <br />}
+                        </span>
+                      ))}
                     </h2>
 
                     <h3 className="text-nowrap font-thin mb-4">
-                      Software Developer <br /> Machine Learning Engineer <br />
-                      Instructor
+                      {t.nav.role.map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < t.nav.role.length - 1 && <br />}
+                        </span>
+                      ))}
                     </h3>
 
                     <div className="flex items-center gap-4">
@@ -191,6 +219,7 @@ const Nav = () => {
             </Sheet>
 
             <MusicButton isTop={false} />
+            <LanguageButton isTop={false} />
           </motion.div>
         </div>
       </AnimatePresence>
@@ -213,9 +242,9 @@ const Nav = () => {
           </TransitionLink>
 
           <div className="flex items-center justify-end gap-8 text-lg font-light">
-            {navItems.map(({ name, href }) => (
+            {navItems.map(({ key, href }) => (
               <TransitionLink
-                key={name}
+                key={key}
                 href={href}
                 className={
                   pathname === "/" || pathname === "/services"
@@ -223,11 +252,12 @@ const Nav = () => {
                     : "text-neutral-900"
                 }
               >
-                {name}
+                {t.nav[key]}
               </TransitionLink>
             ))}
 
             <MusicButton isTop={true} />
+            <LanguageButton isTop={true} />
           </div>
         </nav>
       </div>

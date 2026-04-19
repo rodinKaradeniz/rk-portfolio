@@ -10,11 +10,11 @@ import {
 import Button from "./Button";
 import { icons } from "@/data";
 
-const BottomDrawer = ({ menu, onClick }) => {
+const BottomDrawer = ({ menu, onClick, label = "Click to view more" }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button title="Click to view more" IconRight={icons.arrow_right} />
+        <Button title={label} IconRight={icons.arrow_right} />
       </SheetTrigger>
 
       <SheetContent

@@ -7,13 +7,26 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { icons, projects } from "@/data";
 import { useLenis } from "@/context/LenisContext";
-import { useMemo, useRef } from "react";
+import { useLocale } from "@/context/LocaleContext";
+import { useMemo, useRef, useEffect } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
 
-const useGSAPAnimations = (pathname, highlightedProjects) => {
+const useGSAPAnimations = (pathname, highlightedProjects, t) => {
   const lenis = useLenis();
   const domRefs = useRef({});
+
+  // Refs so GSAP callbacks always see latest data without needing to reinitialize
+  const highlightedRef = useRef(highlightedProjects);
+  const tRef = useRef(t);
+  const lastCycleRef = useRef(0);
+  const updateInfoRef = useRef(null);
+
+  useEffect(() => { highlightedRef.current = highlightedProjects; }, [highlightedProjects]);
+  useEffect(() => { tRef.current = t; }, [t]);
+  // Immediately refresh visible info text when locale changes
+  useEffect(() => {
+    if (updateInfoRef.current) updateInfoRef.current(lastCycleRef.current);
+  }, [t]);
 
   useGSAP(() => {
     if (pathname === "/" && lenis) {
@@ -94,7 +107,7 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
 
         if (!infoItems.length || !linkContainer) return;
 
-        const item = highlightedProjects[index];
+        const item = highlightedRef.current[index];
         if (!item) return;
 
         const typeParts = item.type.split("•");
@@ -121,7 +134,7 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
               rel="noopener noreferrer"
               class="flex flex-row gap-2 items-center whitespace-nowrap"
             >
-              <span class="text-lg tracking-tight">View Demo</span>
+              <span class="text-lg tracking-tight">${tRef.current.samples.viewDemo}</span>
               <div class="w-5 h-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -145,11 +158,14 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
         } else {
           linkContainer.innerHTML = `
             <div class="flex gap-2 items-center">
-              <span class="text-lg tracking-tight">Coming Soon</span>
+              <span class="text-lg tracking-tight">${tRef.current.samples.comingSoon}</span>
             </div>
           `;
         }
       };
+
+      // Expose so locale-change effect can call it immediately
+      updateInfoRef.current = updateInfoContent;
 
       // Initialize first content
       updateInfoContent(0);
@@ -162,7 +178,7 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
       ScrollTrigger.create({
         trigger: pinnedSection,
         start: "top top",
-        end: `+=${pinnedHeight} * 2`,
+        end: `+=${pinnedHeight * 2}`,
         pin: true,
         pinSpacing: true,
         scrub: 0.1,
@@ -183,6 +199,7 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
               animateImageEntry(currentImage);
               gsap.delayedCall(0.5, () => updateInfoContent(currentCycle));
               lastCycle = currentCycle;
+              lastCycleRef.current = currentCycle;
             }
           }
 
@@ -199,22 +216,26 @@ const useGSAPAnimations = (pathname, highlightedProjects) => {
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      // Clear refs
       domRefs.current = {};
+      updateInfoRef.current = null;
+      lastCycleRef.current = 0;
     };
-  }, [lenis, highlightedProjects]);
+  }, [lenis]);
 };
 
 const Samples = () => {
   const pathname = usePathname();
+  const { t } = useLocale();
 
-  // Memoize filtered projects to prevent unnecessary re-renders
   const highlightedProjects = useMemo(
-    () => projects.filter((project) => project.highlight),
-    []
+    () =>
+      projects
+        .map((p, i) => ({ ...p, ...t.projectsData[i] }))
+        .filter((project) => project.highlight),
+    [t]
   );
 
-  useGSAPAnimations(pathname, highlightedProjects);
+  useGSAPAnimations(pathname, highlightedProjects, t);
 
   return (
     <section className="container">
@@ -223,16 +244,24 @@ const Samples = () => {
         <div className="mx-auto info absolute top-[65%] md:top-[50%] translate-y-[-50%] w-[60vw] md:w-full flex flex-col md:flex-row items-end md:items-center justify-between p-4">
           <div className="text-right md:text-left md:max-w-[400px]">
             <div className="title mb-2">
-              <p className="text-4xl tracking-tight">Title</p>
+              <p className="text-4xl tracking-tight">
+                {highlightedProjects[0]?.title}
+              </p>
             </div>
             <div className="tagline">
-              <p className="text-xl tracking-tight">Tagline</p>
+              <p className="text-xl tracking-tight">
+                {highlightedProjects[0]?.type?.split("•")[0]?.trim()}
+              </p>
             </div>
             <div className="year mb-2">
-              <p className="text-sm tracking-tight">Year</p>
+              <p className="text-sm tracking-tight">
+                {highlightedProjects[0]?.year}
+              </p>
             </div>
             <div className="tag">
-              <p className="text-sm tracking-tight">Tag</p>
+              <p className="text-sm tracking-tight">
+                {highlightedProjects[0]?.type?.split("•")[1]?.trim()}
+              </p>
             </div>
           </div>
 
@@ -243,7 +272,9 @@ const Samples = () => {
               rel="noopener noreferrer"
               className="flex gap-2 items-center"
             >
-              <span className="text-lg tracking-tight">View Demo</span>
+              <span className="text-lg tracking-tight">
+                {t.samples.viewDemo}
+              </span>
               <div className="w-5 h-5">{icons.arrowupright}</div>
             </a>
           </div>

@@ -7,9 +7,11 @@ import TorontoImg from "@/assets/images/toronto.jpg";
 import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
 import { emailAddress, icons } from "@/data";
+import { useLocale } from "@/context/LocaleContext";
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const { t } = useLocale();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -28,15 +30,14 @@ const Contact = () => {
 
         <div className="w-full h-full p-8 md:p-0 md:pr-6 flex flex-col justify-center items-start md:items-end">
           <h1 className="h1 text-right mb-0 md:mb-12">
-            Let's <br className="hidden md:flex" /> Get{" "}
-            <br className="hidden md:flex" /> In{" "}
-            <br className="hidden md:flex" /> Touch.
+            {t.contactPage.heading1} <br className="hidden md:flex" />{" "}
+            {t.contactPage.heading2}
           </h1>
 
           <div className="flex flex-col items-start md:items-end">
-            <a href="mailto:mrodin.karadeniz@gmail.com">
+            <a href={`mailto:${emailAddress}`}>
               <Button
-                title="Send an Email"
+                title={t.contactPage.sendEmail}
                 variant="outline-secondary"
                 hoverDirection="left"
                 className="mb-4"
@@ -44,7 +45,7 @@ const Contact = () => {
             </a>
 
             <Button
-              title={copied ? "Copied Successfully" : "Copy My Email Address"}
+              title={copied ? t.contactPage.copied : t.contactPage.copyEmail}
               variant="outline-secondary"
               hoverDirection="left"
               IconRight={copied ? icons.check : icons.copy}

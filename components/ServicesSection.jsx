@@ -8,11 +8,30 @@ import TorontoImg from "@/assets/images/toronto.jpg";
 import { icons } from "@/data";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Button from "./Button";
+import { useLocale } from "@/context/LocaleContext";
+
+const ServicesSectionText = ({ t }) => (
+  <div className="max-w-xl">
+    <h2 className="h2 font-semibold mb-8">{t.servicesSection.title}</h2>
+    <p className="text-lg tracking-tight font-light mb-8">
+      {t.servicesSection.body}
+    </p>
+    <Button
+      title={t.servicesSection.cta}
+      IconRight={icons.arrowupright}
+      className="mb-8"
+    />
+    <p className="text-sm tracking-tight font-light">
+      {t.servicesSection.scrollHint}
+    </p>
+  </div>
+);
 
 const ServicesSection = () => {
   const ref = useRef(null);
+  const { t } = useLocale();
 
-  const { scrollYProgress: scrollYProgress } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
@@ -53,55 +72,14 @@ const ServicesSection = () => {
 
           {/* Text */}
           <div className="hidden md:flex md:sticky md:top-0 w-full md:w-[65%] h-[70%] md:h-screen p-5 md:pl-12 items-center justify-center">
-            <div className="max-w-xl">
-              <h2 className="h2 font-semibold mb-8">What I Do</h2>
-
-              <p className="text-lg tracking-tight font-light mb-8">
-                I specialize in crafting digital experiences, developing
-                intelligent systems, and teaching programming concepts. My
-                services include software development, machine learning
-                engineering, web development, UI/UX design, and prompt
-                engineering. Whether you need an intuitive app, a data-driven
-                model, or educational guidance, I bring a blend of technical
-                expertise and creative problem-solving to the table.
-              </p>
-
-              <Button
-                title="My Services"
-                IconRight={icons.arrowupright}
-                className="mb-8"
-              />
-
-              <p className="text-sm tracking-tight font-light">
-                Scroll down to see some of my samples.
-              </p>
-            </div>
+            <ServicesSectionText t={t} />
           </div>
         </div>
       </section>
 
       <section className="md:hidden max-w-7xl relative mx-auto px-4 w-full h-screen left-0 top-0 flex flex-col-reverse justify-center items-center overflow-hidden z-10 text-center gap-8">
         <div className="h-auto max-w-xs">
-          <h2 className="h2 font-semibold mb-8">What I Do</h2>
-
-          <p className="tracking-tight font-light mb-8">
-            I specialize in crafting digital experiences, developing intelligent
-            systems, and teaching programming concepts. My services include
-            software development, machine learning engineering, web development,
-            UI/UX design, and prompt engineering. Whether you need an intuitive
-            app, a data-driven model, or educational guidance, I bring a blend
-            of technical expertise and creative problem-solving to the table.
-          </p>
-
-          <Button
-            title="My Services"
-            IconRight={icons.arrowupright}
-            className="mb-8"
-          />
-
-          <p className="text-sm tracking-tight font-light">
-            Scroll down to see some of my samples.
-          </p>
+          <ServicesSectionText t={t} />
         </div>
 
         <div className="w-full h-[40%] flex items-center justify-center">

@@ -4,6 +4,7 @@ import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { AudioProvider } from "@/context/AudioContext";
 import { LenisProvider } from "@/context/LenisContext";
+import { LocaleProvider } from "@/context/LocaleContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,18 +24,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html>
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f9eddd]`}
       >
-        <LenisProvider>
-          <AudioProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </AudioProvider>
-        </LenisProvider>
+        <LocaleProvider>
+          <LenisProvider>
+            <AudioProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </AudioProvider>
+          </LenisProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

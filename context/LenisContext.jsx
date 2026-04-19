@@ -9,60 +9,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LenisContext = createContext(null);
 
-export const useLenis = () => {
-  const context = useContext(LenisContext);
-  return context;
-};
+export const useLenis = () => useContext(LenisContext);
 
 export const LenisProvider = ({ children }) => {
   const [lenis, setLenis] = useState(null);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Ensure we're on the client and component is mounted
-    if (typeof window === "undefined") return;
+    const lenisInstance = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
 
-    setIsMounted(true);
+    lenisInstance.on("scroll", ScrollTrigger.update);
 
-    // Add a small delay to ensure hydration is complete
-    const timer = setTimeout(() => {
-      const lenisInstance = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        // Prevent Lenis from adding styles to body during hydration
-        wrapper: typeof window !== "undefined" ? window : undefined,
-        content:
-          typeof window !== "undefined" ? document.documentElement : undefined,
-      });
+    const tickerCallback = (time) => lenisInstance.raf(time * 1000);
+    gsap.ticker.add(tickerCallback);
+    gsap.ticker.lagSmoothing(0);
 
-      // Connect Lenis to ScrollTrigger
-      lenisInstance.on("scroll", ScrollTrigger.update);
-
-      setLenis(lenisInstance);
-
-      // Animation loop
-      function raf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      return () => {
-        lenisInstance.destroy();
-        setLenis(null);
-      };
-    }, 100); // Small delay to ensure hydration is complete
+    setLenis(lenisInstance);
 
     return () => {
-      clearTimeout(timer);
+      gsap.ticker.remove(tickerCallback);
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
-
-  // Don't render children until mounted to prevent hydration issues
-  if (!isMounted) {
-    return <>{children}</>;
-  }
 
   return (
     <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>

@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Button from "./Button";
+import { useLocale } from "@/context/LocaleContext";
 
 const ContactForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const { t } = useLocale();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -14,9 +19,12 @@ const ContactForm = () => {
       },
       body: JSON.stringify({
         access_key: "80819495-ebd0-4ebd-9924-be313f7f0694",
-        name: e.target.firstName.value + " " + e.target.lastName.value,
+        name: e.target.firstName.value,
         email: e.target.email.value,
+        organization: e.target.organization.value,
+        services: e.target.services.value,
         message: e.target.message.value,
+        botcheck: e.target.botcheck.value,
       }),
     });
 
@@ -34,73 +42,86 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       className="w-full h-full flex flex-col gap-4 tracking-tight"
     >
+      {/* Honeypot — hidden from users, triggers Web3Forms spam filter if filled by a bot */}
+      <input
+        type="text"
+        name="botcheck"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
+
       <div className="flex flex-col">
         <label htmlFor="firstName" className="form-label">
-          Name
+          {t.form.name}
         </label>
         <input
           type="text"
           name="firstName"
           required
-          placeholder="John Doe"
+          placeholder={t.form.namePlaceholder}
           className="form-input"
         />
       </div>
 
       <div className="flex flex-col">
         <label htmlFor="email" className="form-label">
-          Email
+          {t.form.email}
         </label>
         <input
           type="email"
           name="email"
           required
-          placeholder="email@example.com"
+          placeholder={t.form.emailPlaceholder}
           className="form-input"
         />
       </div>
 
       <div className="flex flex-col">
         <label htmlFor="organization" className="form-label">
-          What's your organization
+          {t.form.organization}
         </label>
         <input
           type="text"
-          name="lastName"
+          name="organization"
           required
-          placeholder="I'm writing individually / My organization is ..."
+          placeholder={t.form.organizationPlaceholder}
           className="form-input"
         />
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="lastName" className="form-label">
-          What services are you looking for?
+        <label htmlFor="services" className="form-label">
+          {t.form.services}
         </label>
         <input
           type="text"
-          name="lastName"
+          name="services"
           required
-          placeholder="App Development, Web Development, Design, ..."
+          placeholder={t.form.servicesPlaceholder}
           className="form-input"
         />
       </div>
 
       <div className="flex flex-col mb-5">
         <label htmlFor="message" className="form-label">
-          Your Message
+          {t.form.message}
         </label>
         <textarea
           name="message"
           required
           rows={3}
-          placeholder="Hello, how are you? Can you help me out with ..."
+          placeholder={t.form.messagePlaceholder}
           className="form-input"
         ></textarea>
       </div>
 
       <div className="w-full flex justify-end">
-        <Button type="submit" title="Send Message" />
+        {submitted ? (
+          <p className="text-sm tracking-tight">{t.form.sent}</p>
+        ) : (
+          <Button type="submit" title={t.form.send} />
+        )}
       </div>
     </form>
   );

@@ -1,23 +1,29 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import RK from "@/assets/images/rk.jpg";
 import TransitionLink from "../TransitionLink";
 import { projects } from "@/data";
+import { useLocale } from "@/context/LocaleContext";
 
 const IntroParallax = () => {
-  const firstRow = projects.slice(0, 5);
-  const secondRow = projects.slice(5, 10);
+  const { t } = useLocale();
+  const validProjects = useMemo(
+    () => projects.map((p, i) => ({ ...p, ...t.projectsData[i] })).filter((p) => p.image),
+    [t]
+  );
+  const firstRow = validProjects.slice(0, 5);
+  const secondRow = validProjects.slice(5, 10);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
+  const springConfig = { stiffness: 300, damping: 30 };
 
   const translateX = useSpring(
     useTransform(scrollYProgress, [0.05, 1], [0, 1000]),
@@ -52,7 +58,7 @@ const IntroParallax = () => {
       ref={ref}
       className="h-[250vh] overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
-      <Header />
+      <Header t={t} />
 
       <motion.div
         style={{
@@ -78,9 +84,9 @@ const IntroParallax = () => {
           className="w-full flex items-center justify-center text-xl"
         >
           <p className="text-sm md:text-base tracking-tight">
-            Click on any picture to see the sample.{" "}
+            {t.heroParallax.clickHint}{" "}
             <TransitionLink href="/portfolio" className="underline">
-              See my portfolio
+              {t.heroParallax.portfolioLink}
             </TransitionLink>
           </p>
         </motion.div>
@@ -99,23 +105,15 @@ const IntroParallax = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ t }) => {
   return (
     <div className="max-w-7xl relative mx-auto px-4 w-full h-screen left-0 top-0 flex flex-col-reverse md:flex-row justify-center md:justify-between items-center overflow-hidden z-10 text-center md:text-left gap-8">
       <div className="h-auto max-w-xs md:max-w-xl">
-        <h2 className="h2 font-semibold mb-8">Welcome to My Portfolio</h2>
+        <h2 className="h2 font-semibold mb-8">{t.heroParallax.heading}</h2>
 
-        <p className="tracking-tight mb-8">
-          I’m Rodin Karadeniz, a software developer, machine learning engineer,
-          and coding instructor passionate about turning ideas into impactful
-          solutions. My journey has been driven by curiosity, creativity, and a
-          commitment to empowering others through technology and education. Dive
-          in to explore my work, my vision, and the services I offer.
-        </p>
+        <p className="tracking-tight mb-8">{t.heroParallax.body}</p>
 
-        <p className="tracking-tight">
-          Scroll down to learn more about my services and projects.
-        </p>
+        <p className="tracking-tight">{t.heroParallax.scrollHint}</p>
       </div>
 
       <div className="hidden md:block max-w-2xl md:h-full overflow-hidden">

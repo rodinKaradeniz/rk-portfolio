@@ -1,5 +1,5 @@
 "use client";
-import { act, useState } from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,10 +8,14 @@ import WorkImg from "@/assets/images/work.jpg";
 
 import Button from "@/components/Button";
 import BottomDrawer from "@/components/BottomDrawer";
+import { useLocale } from "@/context/LocaleContext";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(-1);
   const [mobileActiveService, setMobileActiveService] = useState(0);
+  const { t } = useLocale();
+
+  const localizedServices = services.map((s, i) => ({ ...s, ...t.servicesData[i] }));
 
   return (
     <>
@@ -27,28 +31,24 @@ const Services = () => {
           <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>
 
           <div className="max-w-sm h-full p-8 flex flex-col justify-center">
-            <h2 className="h2 mb-2">Services</h2>
-            <p className="max-w-sm md:max-w-md">
-              Discover the range of services I offer and how they can support
-              your goals. Click on each service listed on the left to learn
-              more.
-            </p>
+            <h2 className="h2 mb-2">{t.servicesPage.heading}</h2>
+            <p className="max-w-sm md:max-w-md">{t.servicesPage.description}</p>
           </div>
         </div>
 
         <div className="h-[75vh] p-10 flex flex-col items-start justify-between overflow-hidden">
           <div className="mb-4">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="h2">{services[mobileActiveService].title}</h2>
+              <h2 className="h2">{localizedServices[mobileActiveService].title}</h2>
               <div className="w-full flex items-center">
                 <Image
-                  src={services[mobileActiveService].image}
+                  src={localizedServices[mobileActiveService].image}
                   alt="website-img"
                   className="mb-5 -mr-2 w-[120px] h-[160px] object-cover object-center"
                 />
 
                 <Image
-                  src={services[mobileActiveService].image}
+                  src={localizedServices[mobileActiveService].image}
                   alt="website-img"
                   className="mt-0 -ml-2 w-[160px] h-[120px] object-cover object-center"
                 />
@@ -56,11 +56,11 @@ const Services = () => {
             </div>
 
             <p className="text-sm tracking-tight max-w-sm mb-6">
-              {services[mobileActiveService].desc}
+              {localizedServices[mobileActiveService].desc}
             </p>
 
             <div className="flex flex-wrap items-center justify-start gap-3">
-              {services[mobileActiveService].tools.map((tool, index) => (
+              {localizedServices[mobileActiveService].tools.map((tool, index) => (
                 <Button
                   key={index}
                   variant="outline"
@@ -73,8 +73,9 @@ const Services = () => {
 
           <div className="w-fit">
             <BottomDrawer
-              menu={services.map(({ title }) => title)}
+              menu={localizedServices.map(({ title }) => title)}
               onClick={(i) => setMobileActiveService(i)}
+              label={t.servicesPage.viewMore}
             />
           </div>
         </div>
@@ -84,7 +85,7 @@ const Services = () => {
       <div className="hidden md:flex w-full h-screen items-center justify-center">
         <div className="w-1/2 h-full">
           <div className="w-full h-full pr-5 flex flex-col items-end justify-center">
-            {services.map((item, index) => (
+            {localizedServices.map((item, index) => (
               <motion.div
                 key={index}
                 className={`h4 font-thin px-5 py-2 cursor-pointer ${
@@ -108,7 +109,6 @@ const Services = () => {
         </div>
 
         <div className="w-1/2 h-full relative flex items-center bg-black/80">
-          {/* <div className="absolute inset-0 bg-gradient-primary opacity-50 z-[1]"></div> */}
           <motion.div
             key={activeService}
             className="absolute inset-0"
@@ -117,9 +117,7 @@ const Services = () => {
             transition={{ duration: 0.3 }}
           >
             <Image
-              src={
-                activeService === -1 ? WorkImg : services[activeService].image
-              }
+              src={activeService === -1 ? WorkImg : localizedServices[activeService].image}
               alt="service_img"
               className="w-full h-full object-cover brightness-[.4] blur-sm"
             />
@@ -128,18 +126,14 @@ const Services = () => {
           <div className="min-h-[560px] pl-8 flex flex-col items-start justify-center text-left text-stone-200 z-[2]">
             <motion.h2
               className="h2 mb-6"
-              key={
-                activeService === -1
-                  ? "Services"
-                  : services[activeService].title
-              }
+              key={activeService === -1 ? "heading" : localizedServices[activeService].title}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
             >
               {activeService === -1
-                ? "Services"
-                : services[activeService].title}
+                ? t.servicesPage.heading
+                : localizedServices[activeService].title}
             </motion.h2>
 
             <motion.div className="max-w-sm md:max-w-lg" key={activeService}>
@@ -151,9 +145,7 @@ const Services = () => {
                   transition={{ duration: 0.5 }}
                   className="tracking-tight text-lg mb-8"
                 >
-                  Discover the range of services I offer and how they can
-                  support your goals. Click on each service listed on the left
-                  to learn more.
+                  {t.servicesPage.description}
                 </motion.p>
               ) : (
                 <>
@@ -164,13 +156,13 @@ const Services = () => {
                     transition={{ duration: 0.5 }}
                     className="tracking-tight text-lg mb-8"
                   >
-                    {services[activeService].desc}
+                    {localizedServices[activeService].desc}
                   </motion.p>
 
                   <div className="flex flex-wrap items-center justify-start gap-3">
-                    {services[activeService].tools.map((tool, index) => (
+                    {localizedServices[activeService].tools.map((tool, index) => (
                       <motion.div
-                        key={activeService + "button"}
+                        key={activeService + "button" + index}
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
