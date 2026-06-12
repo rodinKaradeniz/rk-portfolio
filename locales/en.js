@@ -13,6 +13,7 @@ const en = {
     scrollHint: "Scroll down to learn more about my services and projects.",
     clickHint: "Click on any picture to see the sample.",
     portfolioLink: "See my portfolio",
+    resumeLink: "View Resume",
   },
   heroSection: {
     body1: "Fueled by a passion for building innovative solutions and inspiring others through education, I strive to make an impact in technology and learning.",
@@ -68,8 +69,10 @@ const en = {
     credit: "Designed and developed by RK.",
   },
   projectsData: [
+    { title: "Archipelago", type: "Semantic Memory System • Web Application", description: "A memory layer for your research — capture articles, write notes, and resurface what you've saved even when you can't remember exactly what you're looking for." },
+    { title: "Slotera", type: "Reservation & Session Management • Web Application", description: "A reservation and session-management product for individual service providers — consultants, coaches, instructors, and workshop hosts." },
+    { title: "Sentinel", type: "Fraud & Risk Scoring • Machine Learning", description: "A multi-phase machine learning platform for fraud and risk scoring, built around cost-sensitive evaluation." },
     { title: "Ginny the Bartender", type: "Cocktail Information & Recommendation System • Web & Mobile App", description: "A web and mobile app that allows users to create and share cocktails, and search for cocktails by name or ingredients." },
-    { title: "RK Reservations", type: "Reservation System • Web Application", description: "A reservation system for a restaurant." },
     { title: "Rokar Africa", type: "Agriculture & Recycling • Company Website", description: "A company website that showcases the company's products and services on agriculture, recycling, and sustainable development." },
     { title: "Rokar Global", type: "Property Management • Company Website", description: "A company website that showcases the company's products and services on construction and property management." },
     { title: "CIYANO", type: "Environment-friendly Packaging • Company Website", description: "A company website that showcases the company's products and services on environment-friendly packaging." },

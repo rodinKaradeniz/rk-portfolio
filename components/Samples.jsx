@@ -183,7 +183,7 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
         pinSpacing: true,
         scrub: 0.1,
         onUpdate: (self) => {
-          const totalProgress = self.progress * 3;
+          const totalProgress = self.progress * images.length;
           const currentCycle = Math.floor(totalProgress);
           const cycleProgress = (totalProgress % 1) * 100;
 

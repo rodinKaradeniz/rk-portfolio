@@ -13,6 +13,7 @@ const tr = {
     scrollHint: "Hizmetlerim ve projelerim hakkında daha fazla bilgi için aşağı kaydırın.",
     clickHint: "Örneği görmek için herhangi bir resme tıklayın.",
     portfolioLink: "Portföyümü gör",
+    resumeLink: "Özgeçmişi Gör",
   },
   heroSection: {
     body1: "Yenilikçi çözümler üretme ve eğitim aracılığıyla başkalarına ilham verme tutkusuyla teknoloji ve öğrenmede etki yaratmayı hedefliyorum.",
@@ -68,8 +69,10 @@ const tr = {
     credit: "RK tarafından tasarlanıp geliştirilmiştir.",
   },
   projectsData: [
+    { title: "Archipelago", type: "Anlamsal Hafıza Sistemi • Web Uygulaması", description: "Araştırmalarınız için bir hafıza katmanı — makaleleri kaydedin, notlar yazın ve tam olarak ne aradığınızı hatırlamasanız bile kaydettiklerinizi yeniden bulun." },
+    { title: "Slotera", type: "Rezervasyon ve Seans Yönetimi • Web Uygulaması", description: "Bireysel hizmet sağlayıcılar — danışmanlar, koçlar, eğitmenler ve atölye yöneticileri — için bir rezervasyon ve seans yönetim ürünü." },
+    { title: "Sentinel", type: "Dolandırıcılık ve Risk Skorlama • Makine Öğrenmesi", description: "Maliyet duyarlı değerlendirme üzerine kurulu, dolandırıcılık ve risk skorlama için çok aşamalı bir makine öğrenmesi platformu." },
     { title: "Ginny the Bartender", type: "Kokteyl Bilgi ve Öneri Sistemi • Web ve Mobil Uygulama", description: "Kullanıcıların kokteyl oluşturup paylaşabildiği ve isme ya da malzemeye göre arama yapabildiği bir web ve mobil uygulama." },
-    { title: "RK Reservations", type: "Rezervasyon Sistemi • Web Uygulaması", description: "Bir restoran için rezervasyon sistemi." },
     { title: "Rokar Africa", type: "Tarım ve Geri Dönüşüm • Şirket Web Sitesi", description: "Tarım, geri dönüşüm ve sürdürülebilir kalkınma alanlarındaki ürün ve hizmetleri sergileyen bir şirket web sitesi." },
     { title: "Rokar Global", type: "Emlak Yönetimi • Şirket Web Sitesi", description: "İnşaat ve emlak yönetimi alanlarındaki ürün ve hizmetleri sergileyen bir şirket web sitesi." },
     { title: "CIYANO", type: "Çevre Dostu Ambalaj • Şirket Web Sitesi", description: "Çevre dostu ambalaj alanındaki ürün ve hizmetleri sergileyen bir şirket web sitesi." },

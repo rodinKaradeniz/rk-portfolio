@@ -6,7 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import RK from "@/assets/images/rk.jpg";
 import TransitionLink from "../TransitionLink";
-import { projects } from "@/data";
+import Button from "../Button";
+import { icons, projects } from "@/data";
 import { useLocale } from "@/context/LocaleContext";
 
 const IntroParallax = () => {
@@ -112,6 +113,19 @@ const Header = ({ t }) => {
         <h2 className="h2 font-semibold mb-8">{t.heroParallax.heading}</h2>
 
         <p className="tracking-tight mb-8">{t.heroParallax.body}</p>
+
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mb-8"
+        >
+          <Button
+            title={t.heroParallax.resumeLink}
+            IconRight={icons.arrowupright}
+            hoverDirection="up"
+          />
+        </a>
 
         <p className="tracking-tight">{t.heroParallax.scrollHint}</p>
       </div>

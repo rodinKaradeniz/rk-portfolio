@@ -7,6 +7,9 @@ import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
 import QuerbarImg from "@/assets/images/projects/querbar.webp";
+import ArchipelagoImg from "@/assets/images/projects/archipelago.jpg";
+import SloteraImg from "@/assets/images/projects/slotera.jpg";
+import SentinelImg from "@/assets/images/projects/fraud_prevention.jpg";
 import RKImg from "@/assets/images/rk.jpg";
 
 // Service Images
@@ -236,43 +239,152 @@ export const navItems = [
 ];
 
 export const projects = [
-  { year: 2025, demo: "", github: "https://github.com/tugayapucu/Ginny-PersonalBartender", image: GinnyImg, highlight: true },
-  { year: 2025, demo: "https://rk-reservations.vercel.app/", github: "", image: null, highlight: false },
-  { year: 2024, demo: "https://rokarafrica.com", github: "", image: RokarAfricaImg, highlight: true },
-  { year: 2024, demo: "https://rokarglobal.com", github: "", image: RokarGlobalImg, highlight: false },
-  { year: 2025, demo: "https://ciyano.com", github: "", image: CIYANOImg, highlight: true },
-  { year: 2025, demo: "https://perihankaradeniz.com/", github: "", image: null, highlight: false },
-  { year: 2025, demo: "https://querbar.de/", github: "", image: QuerbarImg, highlight: false },
-  { year: 2025, demo: "https://market-vista.com", github: "", image: MarketVistaImg, highlight: false },
-  { year: 2025, demo: "https://ceren-demirci.vercel.app/", github: "", image: CerenDImg, highlight: false },
-  { year: 2025, demo: "https://rodinkaradeniz.com", github: "https://github.com/rodinKaradeniz/rk-portfolio", image: RKImg, highlight: false },
+  {
+    year: 2026,
+    demo: "https://archipelago-dev.vercel.app/",
+    github: "",
+    image: ArchipelagoImg,
+    highlight: true,
+  },
+  {
+    year: 2026,
+    demo: "https://slotera.vercel.app/",
+    github: "",
+    image: SloteraImg,
+    highlight: true,
+  },
+  {
+    year: 2026,
+    demo: "",
+    github: "https://github.com/rodinKaradeniz/sentinel",
+    image: SentinelImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "",
+    github: "https://github.com/tugayapucu/Ginny-PersonalBartender",
+    image: GinnyImg,
+    highlight: true,
+  },
+  {
+    year: 2024,
+    demo: "https://rokarafrica.com",
+    github: "",
+    image: RokarAfricaImg,
+    highlight: false,
+  },
+  {
+    year: 2024,
+    demo: "https://rokarglobal.com",
+    github: "",
+    image: RokarGlobalImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://ciyano.com",
+    github: "",
+    image: CIYANOImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://perihankaradeniz.com/",
+    github: "",
+    image: null,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://querbar.de/",
+    github: "",
+    image: QuerbarImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://market-vista.com",
+    github: "",
+    image: MarketVistaImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://ceren-demirci.vercel.app/",
+    github: "",
+    image: CerenDImg,
+    highlight: false,
+  },
+  {
+    year: 2025,
+    demo: "https://rodinkaradeniz.com",
+    github: "https://github.com/rodinKaradeniz/rk-portfolio",
+    image: RKImg,
+    highlight: false,
+  },
 ];
 
 export const services = [
   {
-    tools: ["Java", "Spring Boot", "Python", "Node.js", "NPM", "Git", "Docker", "Kubernetes", "AWS", "CI/CD"],
+    tools: [
+      "Java",
+      "Spring Boot",
+      "Python",
+      "Node.js",
+      "NPM",
+      "Git",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "CI/CD",
+    ],
     image: AppDevImg,
-    imgSrc: "https://unsplash.com/photos/two-black-flat-screen-computer-monitors-LJ9KY8pIH3E",
+    imgSrc:
+      "https://unsplash.com/photos/two-black-flat-screen-computer-monitors-LJ9KY8pIH3E",
   },
   {
-    tools: ["React", "Next.js", "Node.js", "Express", "JavaScript", "HTML", "CSS", "Supabase", "Appwrite"],
+    tools: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Supabase",
+      "Appwrite",
+    ],
     image: WebsiteDevImg,
     imgSrc: "https://unsplash.com/photos/a-computer-on-a-desk-FQ3lFA4Zi58",
   },
   {
     tools: ["React Native", "Expo", "TailwindCSS"],
     image: MobileAppDevImg,
-    imgSrc: "https://unsplash.com/photos/person-using-black-smartphone-with-gray-and-pink-case-cqFKhqv6Ong",
+    imgSrc:
+      "https://unsplash.com/photos/person-using-black-smartphone-with-gray-and-pink-case-cqFKhqv6Ong",
   },
   {
-    tools: ["Neural Networks", "Deep Learning", "LLMs", "Natural Language Processing", "PyTorch", "TensorFlow", "Scikit-Learn", "Hugging Face", "NLTK"],
+    tools: [
+      "Neural Networks",
+      "Deep Learning",
+      "LLMs",
+      "Natural Language Processing",
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-Learn",
+      "Hugging Face",
+      "NLTK",
+    ],
     image: AIEngineeringImg,
-    imgSrc: "https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A",
+    imgSrc:
+      "https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A",
   },
   {
     tools: ["OpenAI", "Llama 2", "LangChain", "Hugging Face"],
     image: PromptEngineeringImg,
-    imgSrc: "https://unsplash.com/photos/a-person-typing-on-a-laptop-on-a-table-adrO5seSbBE",
+    imgSrc:
+      "https://unsplash.com/photos/a-person-typing-on-a-laptop-on-a-table-adrO5seSbBE",
   },
   {
     tools: ["Python", "Pandas", "Power BI", "Tableau"],
@@ -280,9 +392,17 @@ export const services = [
     imgSrc: "https://unsplash.com/photos/graphical-user-interface--WXQm_NTK0U",
   },
   {
-    tools: ["Python", "LEGO Spike Prime", "EV3 Mindstorms", "Scratch", "Arduino", "JavaScript"],
+    tools: [
+      "Python",
+      "LEGO Spike Prime",
+      "EV3 Mindstorms",
+      "Scratch",
+      "Arduino",
+      "JavaScript",
+    ],
     image: ProgrammingEducationImg,
-    imgSrc: "https://unsplash.com/photos/person-holding-white-ipad-on-white-table-hLvQ4-QEBAE",
+    imgSrc:
+      "https://unsplash.com/photos/person-holding-white-ipad-on-white-table-hLvQ4-QEBAE",
   },
 ];
 
