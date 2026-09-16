@@ -6,6 +6,7 @@ import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
 import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
 import QuerbarImg from "@/assets/images/projects/querbar.webp";
+import CrowbarImg from "@/assets/images/projects/crowbar.png";
 import ArchipelagoImg from "@/assets/images/projects/archipelago.jpg";
 import SloteraImg from "@/assets/images/projects/slotera.jpg";
 import AtakanImg from "@/assets/images/projects/atakan_bakiskan.jpg";
@@ -240,6 +241,13 @@ export const navItems = [
 export const projects = [
   {
     year: 2026,
+    demo: "https://crowbar-six.vercel.app/",
+    github: "",
+    image: CrowbarImg,
+    highlight: true,
+  },
+  {
+    year: 2026,
     demo: "https://archipelago-dev.vercel.app/",
     github: "",
     image: ArchipelagoImg,
@@ -264,7 +272,7 @@ export const projects = [
     demo: "",
     github: "https://github.com/tugayapucu/Ginny-PersonalBartender",
     image: GinnyImg,
-    highlight: true,
+    highlight: false,
   },
   {
     year: 2024,

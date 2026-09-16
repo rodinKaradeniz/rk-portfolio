@@ -11,6 +11,8 @@ import { useLocale } from "@/context/LocaleContext";
 import { useMemo, useRef, useEffect } from "react";
 
 
+const SCROLL_PER_PROJECT = 2.5;
+
 const useGSAPAnimations = (pathname, highlightedProjects, t) => {
   const lenis = useLenis();
   const domRefs = useRef({});
@@ -35,7 +37,9 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
         domRefs.current.pinnedSection = document.querySelector(".pinned");
         domRefs.current.progressBar = document.querySelector(".progress");
         domRefs.current.images = gsap.utils.toArray(".img");
-        domRefs.current.pinnedHeight = window.innerHeight * 10;
+        // Scroll distance per highlighted project, in viewport heights
+        domRefs.current.pinnedHeight =
+          window.innerHeight * SCROLL_PER_PROJECT * domRefs.current.images.length;
       }
 
       const { pinnedSection, progressBar, images, pinnedHeight } =
@@ -186,7 +190,7 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
       ScrollTrigger.create({
         trigger: pinnedSection,
         start: "top top",
-        end: `+=${pinnedHeight * 2}`,
+        end: `+=${pinnedHeight}`,
         pin: true,
         pinSpacing: true,
         scrub: 0.1,

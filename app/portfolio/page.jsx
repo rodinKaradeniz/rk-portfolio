@@ -11,10 +11,13 @@ import { icons, projects } from "@/data";
 import Image from "next/image";
 import DevImg from "@/assets/images/coding.jpg";
 import { useLocale } from "@/context/LocaleContext";
+import { useIntroDone } from "@/lib/intro";
+import Reveal from "@/components/Reveal";
 
 const Archive = () => {
   const [activeProject, setActiveProject] = useState(-1);
   const { t } = useLocale();
+  const introDone = useIntroDone();
 
   const localizedProjects = projects.map((p, i) => ({ ...p, ...t.projectsData[i] }));
 
@@ -41,8 +44,12 @@ const Archive = () => {
         <div className="z-[2] absolute inset-0 w-full h-full text-secondary">
           {activeProject === -1 ? (
             <div className="max-w-sm md:max-w-full md:w-full h-full p-8 md:p-0 md:pr-6 flex flex-col justify-center md:items-end md:text-right">
-              <h1 className="h2 mb-2 md:mb-6">{t.portfolioPage.heading}</h1>
-              <p className="max-w-sm md:max-w-lg">{t.portfolioPage.description}</p>
+              <Reveal>
+                <h1 className="h2 mb-2 md:mb-6">{t.portfolioPage.heading}</h1>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="max-w-sm md:max-w-lg">{t.portfolioPage.description}</p>
+              </Reveal>
             </div>
           ) : (
             <div className="w-full h-full pr-6 flex justify-end items-center text-right">
@@ -141,59 +148,60 @@ const Archive = () => {
       <div className="md:hidden w-full h-[75vh] px-12 py-4">
         <ScrollArea className="w-full h-[70vh] my-auto p-4">
           {localizedProjects.map((item, index) => (
-            <Accordion
-              key={index}
-              title={
-                <div className="flex flex-col items-start">
-                  <div className="text-xl font-semibold tracking-tight">
-                    {item.title}
-                  </div>
-                  <div className="font-light tracking-tight">
-                    {item.type} • {item.year}
-                  </div>
-                </div>
-              }
-              content={
-                <div className="w-full min-h-[350px] py-8 flex flex-col justify-center items-center gap-8">
-                  {/* Images */}
-                  {item.image && (
-                    <div className="w-full h-1/2 flex items-center justify-center">
-                      <Image
-                        src={item.image}
-                        alt="website-img"
-                        className="mb-4 -mr-2 w-[180px] h-[120px] object-cover object-center"
-                        sizes="180px"
-                      />
-
-                      <Image
-                        src={item.image}
-                        alt="website-img"
-                        className="mt-4 -ml-2 w-[180px] h-[120px] object-cover object-center"
-                        sizes="180px"
-                      />
+            <Reveal key={index} delay={Math.min(index, 6) * 0.05} y={16}>
+              <Accordion
+                title={
+                  <div className="flex flex-col items-start">
+                    <div className="text-xl font-semibold tracking-tight">
+                      {item.title}
                     </div>
-                  )}
-
-                  {/* Text */}
-                  <div className="w-full h-1/2 px-2 flex items-center justify-between gap-8">
-                    <div className="font-light">{item.description}</div>
-
-                    {(item.demo || item.github) && (
-                      <a
-                        href={item.demo || item.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button
-                          IconLeft={icons.arrowupright}
-                          className="!rounded-full !p-4"
-                        />
-                      </a>
-                    )}
+                    <div className="font-light tracking-tight">
+                      {item.type} • {item.year}
+                    </div>
                   </div>
-                </div>
-              }
-            />
+                }
+                content={
+                  <div className="w-full min-h-[350px] py-8 flex flex-col justify-center items-center gap-8">
+                    {/* Images */}
+                    {item.image && (
+                      <div className="w-full h-1/2 flex items-center justify-center">
+                        <Image
+                          src={item.image}
+                          alt="website-img"
+                          className="mb-4 -mr-2 w-[180px] h-[120px] object-cover object-center"
+                          sizes="180px"
+                        />
+
+                        <Image
+                          src={item.image}
+                          alt="website-img"
+                          className="mt-4 -ml-2 w-[180px] h-[120px] object-cover object-center"
+                          sizes="180px"
+                        />
+                      </div>
+                    )}
+
+                    {/* Text */}
+                    <div className="w-full h-1/2 px-2 flex items-center justify-between gap-8">
+                      <div className="font-light">{item.description}</div>
+
+                      {(item.demo || item.github) && (
+                        <a
+                          href={item.demo || item.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            IconLeft={icons.arrowupright}
+                            className="!rounded-full !p-4"
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                }
+              />
+            </Reveal>
           ))}
         </ScrollArea>
       </div>
@@ -205,7 +213,7 @@ const Archive = () => {
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={introDone ? { opacity: 1, x: 0 } : undefined}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="flex flex-col items-start cursor-pointer mb-6"
               onClick={() => setActiveProject(index)}

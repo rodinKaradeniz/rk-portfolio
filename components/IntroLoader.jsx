@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/all";
 import { useLenis } from "@/context/LenisContext";
 import { useLocale } from "@/context/LocaleContext";
+import { markIntroDone } from "@/lib/intro";
 
 // Keep in sync with the inline script in app/layout.jsx
 export const INTRO_STORAGE_KEY = "rk-intro-seen";
@@ -100,6 +101,10 @@ const IntroLoader = () => {
 
     const timer = setTimeout(() => setPhase("done"), EXIT_DURATION);
     return () => clearTimeout(timer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase === "done") markIntroDone();
   }, [phase]);
 
   if (phase === "done") return null;

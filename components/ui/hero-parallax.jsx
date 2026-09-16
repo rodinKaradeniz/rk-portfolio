@@ -7,6 +7,7 @@ import Link from "next/link";
 import RK from "@/assets/images/rk.jpg";
 import TransitionLink from "../TransitionLink";
 import Button from "../Button";
+import Reveal from "../Reveal";
 import { icons, projects } from "@/data";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -109,7 +110,7 @@ const IntroParallax = () => {
 const Header = ({ t }) => {
   return (
     <div className="max-w-7xl relative mx-auto px-4 w-full h-screen left-0 top-0 flex flex-col-reverse md:flex-row justify-center md:justify-between items-center overflow-hidden z-10 text-center md:text-left gap-8">
-      <div className="h-auto max-w-xs md:max-w-xl">
+      <Reveal className="h-auto max-w-xs md:max-w-xl">
         <h2 className="h2 font-semibold mb-8">{t.heroParallax.heading}</h2>
 
         <p className="tracking-tight mb-8">{t.heroParallax.body}</p>
@@ -128,13 +129,19 @@ const Header = ({ t }) => {
         </a>
 
         <p className="tracking-tight">{t.heroParallax.scrollHint}</p>
-      </div>
+      </Reveal>
 
-      <div className="hidden md:block max-w-2xl md:h-full overflow-hidden">
+      <Reveal
+        delay={0.15}
+        className="hidden md:block max-w-2xl md:h-full overflow-hidden"
+      >
         <Image src={RK} alt="rk" className="w-full h-full object-cover" />
-      </div>
+      </Reveal>
 
-      <div className="md:hidden w-full h-[40%] flex items-center justify-center">
+      <Reveal
+        delay={0.15}
+        className="md:hidden w-full h-[40%] flex items-center justify-center"
+      >
         <Image
           src={RK}
           alt="website-img"
@@ -146,7 +153,7 @@ const Header = ({ t }) => {
           alt="website-img"
           className="mt-16 -ml-2 w-[135px] h-[200px] object-cover object-center"
         />
-      </div>
+      </Reveal>
     </div>
   );
 };

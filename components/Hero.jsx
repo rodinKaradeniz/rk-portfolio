@@ -2,6 +2,7 @@
 import Image from "next/image";
 import RK from "@/assets/images/rk.jpg";
 import { useLocale } from "@/context/LocaleContext";
+import Reveal from "./Reveal";
 
 const Hero = () => {
   const { t } = useLocale();
@@ -17,32 +18,42 @@ const Hero = () => {
       <div className="absolute inset-0 backdrop-blur-md z-[-1]"></div>
 
       <div className="absolute max-w-[300px] md:max-w-[450px] top-[12.5%] md:top-[30%] left-[7.5%] text-base md:text-xl tracking-tight space-y-8">
-        <p>{t.heroSection.body1}</p>
-        <p>{t.heroSection.body2}</p>
+        <Reveal delay={0.1}>
+          <p>{t.heroSection.body1}</p>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p>{t.heroSection.body2}</p>
+        </Reveal>
       </div>
 
       <div className="w-full h-full p-12 flex flex-col items-end justify-end text-right tracking-tight">
-        <h1 className="h0 mb-6">
-          {t.nav.name.split("\n").map((line, i, arr) => (
-            <span key={i}>
-              {line}
-              {i < arr.length - 1 && <br />}
-            </span>
-          ))}
-        </h1>
+        <Reveal delay={0.3}>
+          <h1 className="h0 mb-6">
+            {t.nav.name.split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
+          </h1>
+        </Reveal>
 
-        <h3 className="h4 mb-6">
-          {t.nav.role.map((line, i, arr) => (
-            <span key={i}>
-              {line}
-              {i < arr.length - 1 && <br />}
-            </span>
-          ))}
-        </h3>
+        <Reveal delay={0.4}>
+          <h3 className="h4 mb-6">
+            {t.nav.role.map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
+          </h3>
+        </Reveal>
 
-        <p className="text-base tracking-tight brightness-[.6]">
-          {t.heroSection.scrollHint}
-        </p>
+        <Reveal delay={0.5}>
+          <p className="text-base tracking-tight brightness-[.6]">
+            {t.heroSection.scrollHint}
+          </p>
+        </Reveal>
       </div>
     </div>
   );

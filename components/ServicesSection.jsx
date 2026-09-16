@@ -8,10 +8,11 @@ import TorontoImg from "@/assets/images/toronto.jpg";
 import { icons } from "@/data";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Button from "./Button";
+import Reveal from "./Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 const ServicesSectionText = ({ t }) => (
-  <div className="max-w-xl">
+  <Reveal className="max-w-xl">
     <h2 className="h2 font-semibold mb-8">{t.servicesSection.title}</h2>
     <p className="text-lg tracking-tight font-light mb-8">
       {t.servicesSection.body}
@@ -24,7 +25,7 @@ const ServicesSectionText = ({ t }) => (
     <p className="text-sm tracking-tight font-light">
       {t.servicesSection.scrollHint}
     </p>
-  </div>
+  </Reveal>
 );
 
 const ServicesSection = () => {
@@ -82,7 +83,10 @@ const ServicesSection = () => {
           <ServicesSectionText t={t} />
         </div>
 
-        <div className="w-full h-[40%] flex items-center justify-center">
+        <Reveal
+          delay={0.15}
+          className="w-full h-[40%] flex items-center justify-center"
+        >
           <Image
             src={TorontoImg}
             alt="website-img"
@@ -94,7 +98,7 @@ const ServicesSection = () => {
             alt="website-img"
             className="mt-16 -ml-2 w-[135px] h-[200px] object-cover object-center"
           />
-        </div>
+        </Reveal>
       </section>
     </>
   );

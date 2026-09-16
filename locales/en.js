@@ -69,6 +69,7 @@ const en = {
     credit: "Designed and developed by RK.",
   },
   projectsData: [
+    { title: "Crowbar", type: "Venue Operations Platform • Web Application", description: "An operations platform for independent bars and restaurants — bookings and the walk-in queue, QR ordering and bar ticket boards, and stock counted down to the pour, all in one connected record while the venue's own register stays the payment authority." },
     { title: "Archipelago", type: "Semantic Memory System • Web Application", description: "A memory layer for your research — capture articles, write notes, and resurface what you've saved even when you can't remember exactly what you're looking for." },
     { title: "Slotera", type: "Reservation & Session Management • Web Application", description: "A reservation and session-management product for individual service providers — consultants, coaches, instructors, and workshop hosts." },
     { title: "Atakan Bakiskan", type: "Economist • Personal Website", description: "A portfolio website for an economist and PhD student in Economics at the University of Toronto, presenting his research notes, media appearances, and professional background — with a private dashboard for managing content." },

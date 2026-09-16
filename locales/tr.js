@@ -69,6 +69,7 @@ const tr = {
     credit: "RK tarafından tasarlanıp geliştirilmiştir.",
   },
   projectsData: [
+    { title: "Crowbar", type: "Mekan Operasyon Platformu • Web Uygulaması", description: "Bağımsız barlar ve restoranlar için bir operasyon platformu — rezervasyonlar ve kapıdaki bekleme sırası, QR sipariş ve bar sipariş panoları, döküm bazında stok takibi tek bir bağlantılı kayıtta; ödeme yetkisi ise mekanın kendi kasasında kalır." },
     { title: "Archipelago", type: "Anlamsal Hafıza Sistemi • Web Uygulaması", description: "Araştırmalarınız için bir hafıza katmanı — makaleleri kaydedin, notlar yazın ve tam olarak ne aradığınızı hatırlamasanız bile kaydettiklerinizi yeniden bulun." },
     { title: "Slotera", type: "Rezervasyon ve Seans Yönetimi • Web Uygulaması", description: "Bireysel hizmet sağlayıcılar — danışmanlar, koçlar, eğitmenler ve atölye yöneticileri — için bir rezervasyon ve seans yönetim ürünü." },
     { title: "Atakan Bakiskan", type: "Ekonomist • Kişisel Web Sitesi", description: "Toronto Üniversitesi'nde ekonomi doktora öğrencisi olan bir ekonomist için portföy web sitesi; araştırma notlarını, medya görünümlerini ve profesyonel geçmişini sergiliyor, içerikler özel bir yönetim paneli üzerinden yönetiliyor." },

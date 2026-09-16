@@ -6,6 +6,7 @@ import TorontoImg from "@/assets/images/toronto.jpg";
 
 import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
+import Reveal from "@/components/Reveal";
 import { emailAddress, icons } from "@/data";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -29,12 +30,14 @@ const Contact = () => {
         <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>
 
         <div className="w-full h-full p-8 md:p-0 md:pr-6 flex flex-col justify-center items-start md:items-end">
-          <h1 className="h1 text-right mb-0 md:mb-12">
-            {t.contactPage.heading1} <br className="hidden md:flex" />{" "}
-            {t.contactPage.heading2}
-          </h1>
+          <Reveal>
+            <h1 className="h1 text-right mb-0 md:mb-12">
+              {t.contactPage.heading1} <br className="hidden md:flex" />{" "}
+              {t.contactPage.heading2}
+            </h1>
+          </Reveal>
 
-          <div className="flex flex-col items-start md:items-end">
+          <Reveal delay={0.15} className="flex flex-col items-start md:items-end">
             <a href={`mailto:${emailAddress}`}>
               <Button
                 title={t.contactPage.sendEmail}
@@ -51,12 +54,14 @@ const Contact = () => {
               IconRight={copied ? icons.check : icons.copy}
               onClick={handleCopy}
             />
-          </div>
+          </Reveal>
         </div>
       </div>
 
       <div className="w-screen md:w-[50vw] min-h-[80vh] px-12 md:pl-4 md:pr-24 pt-8 md:pt-0 flex flex-col justify-center items-center">
-        <ContactForm />
+        <Reveal delay={0.25} className="w-full">
+          <ContactForm />
+        </Reveal>
       </div>
     </div>
   );

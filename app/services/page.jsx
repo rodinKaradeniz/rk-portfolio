@@ -9,11 +9,14 @@ import WorkImg from "@/assets/images/work.jpg";
 import Button from "@/components/Button";
 import BottomDrawer from "@/components/BottomDrawer";
 import { useLocale } from "@/context/LocaleContext";
+import { useIntroDone } from "@/lib/intro";
+import Reveal from "@/components/Reveal";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(-1);
   const [mobileActiveService, setMobileActiveService] = useState(0);
   const { t } = useLocale();
+  const introDone = useIntroDone();
 
   const localizedServices = services.map((s, i) => ({ ...s, ...t.servicesData[i] }));
 
@@ -29,13 +32,16 @@ const Services = () => {
           />
           <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>
 
-          <div className="max-w-sm h-full p-8 flex flex-col justify-center">
+          <Reveal className="max-w-sm h-full p-8 flex flex-col justify-center">
             <h2 className="h2 mb-2">{t.servicesPage.heading}</h2>
             <p className="max-w-sm md:max-w-md">{t.servicesPage.description}</p>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="h-[75vh] p-10 flex flex-col items-start justify-between overflow-hidden">
+        <Reveal
+          delay={0.15}
+          className="h-[75vh] p-10 flex flex-col items-start justify-between overflow-hidden"
+        >
           <div className="mb-4">
             <div className="flex items-center justify-between mb-5">
               <h2 className="h2">{localizedServices[mobileActiveService].title}</h2>
@@ -77,7 +83,7 @@ const Services = () => {
               label={t.servicesPage.viewMore}
             />
           </div>
-        </div>
+        </Reveal>
       </div>
 
       {/* Desktop Version */}
@@ -95,8 +101,8 @@ const Services = () => {
                   activeService === index ? "text-secondary" : "text-primary"
                 }`}
                 initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
+                animate={introDone ? { opacity: 1, x: 0 } : undefined}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.975 }}
                 onClick={() => setActiveService(index)}
@@ -127,7 +133,7 @@ const Services = () => {
               className="h2 mb-6"
               key={activeService === -1 ? "heading" : localizedServices[activeService].title}
               initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={introDone ? { opacity: 1, x: 0 } : undefined}
               transition={{ duration: 0.3 }}
             >
               {activeService === -1
@@ -140,7 +146,7 @@ const Services = () => {
                 <motion.p
                   key={activeService + "0"}
                   initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  animate={introDone ? { opacity: 1, x: 0 } : undefined}
                   transition={{ duration: 0.5 }}
                   className="tracking-tight text-lg mb-8"
                 >

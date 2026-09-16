@@ -3,6 +3,7 @@
 import { emailAddress, icons, navItems, socialMediaIcons } from "@/data";
 import Button from "./Button";
 import TransitionLink from "./TransitionLink";
+import Reveal from "./Reveal";
 import { useState } from "react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -18,7 +19,7 @@ const Footer = () => {
   return (
     <div className="w-screen px-[7.5%] bg-gradient-primary text-secondary">
       <div className="w-full h-[50%] px-12 pb-4 pt-16 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-4">
-        <div className="md:w-[40%] flex flex-col gap-4 items-center md:items-start text-center md:text-left">
+        <Reveal className="md:w-[40%] flex flex-col gap-4 items-center md:items-start text-center md:text-left">
           <h4 className="text-2xl font-semibold">{t.footer.cta}</h4>
 
           <TransitionLink href="/contact">
@@ -30,9 +31,12 @@ const Footer = () => {
               IconRight={icons.arrowupright}
             />
           </TransitionLink>
-        </div>
+        </Reveal>
 
-        <div className="w-full md:w-[50%] flex flex-col md:flex-row items-center md:items-start justify-center gap-12">
+        <Reveal
+          delay={0.1}
+          className="w-full md:w-[50%] flex flex-col md:flex-row items-center md:items-start justify-center gap-12"
+        >
           <div className="w-1/2">
             <div className="flex flex-col items-center md:items-start gap-3">
               {navItems.map((item) => (
@@ -56,11 +60,11 @@ const Footer = () => {
               />
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <div className="h-[40%] w-full px-12 pb-4 pt-12 flex flex-col lg:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center lg:items-start">
+        <Reveal className="flex flex-col items-center lg:items-start">
           <h2 className="text-5xl md:text-6xl font-light">
             {t.nav.name.split("\n").map((line, i, arr) => (
               <span key={i}>
@@ -73,9 +77,9 @@ const Footer = () => {
           <h3 className="text-xs md:text-xl text-nowrap mt-4">
             {t.nav.role.join(" • ")}
           </h3>
-        </div>
+        </Reveal>
 
-        <div className="flex items-center gap-4">
+        <Reveal delay={0.1} className="flex items-center gap-4">
           {socialMediaIcons.map((icon, index) => (
             <a
               key={index}
@@ -87,7 +91,7 @@ const Footer = () => {
               {icon.icon}
             </a>
           ))}
-        </div>
+        </Reveal>
       </div>
 
       <div className="h-[10%] w-full py-4 flex items-center justify-center">
