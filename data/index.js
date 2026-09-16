@@ -1,7 +1,6 @@
 // Project Images
-// import ByOthersImg from "@/assets/images/projects/by_others.jpg";
 import CerenDImg from "@/assets/images/projects/ceren_d.jpg";
-import CIYANOImg from "@/assets/images/projects/ciyano.png";
+import CIYANOImg from "@/assets/images/projects/ciyano.jpg";
 import MarketVistaImg from "@/assets/images/projects/market_vista.jpg";
 import RokarAfricaImg from "@/assets/images/projects/rokar_africa.jpg";
 import RokarGlobalImg from "@/assets/images/projects/rokar_global.jpg";
@@ -9,7 +8,7 @@ import GinnyImg from "@/assets/images/projects/ginny_the_bartender.jpg";
 import QuerbarImg from "@/assets/images/projects/querbar.webp";
 import ArchipelagoImg from "@/assets/images/projects/archipelago.jpg";
 import SloteraImg from "@/assets/images/projects/slotera.jpg";
-import SentinelImg from "@/assets/images/projects/fraud_prevention.jpg";
+import AtakanImg from "@/assets/images/projects/atakan_bakiskan.jpg";
 import RKImg from "@/assets/images/rk.jpg";
 
 // Service Images
@@ -254,10 +253,10 @@ export const projects = [
     highlight: true,
   },
   {
-    year: 2026,
-    demo: "",
-    github: "https://github.com/rodinKaradeniz/sentinel",
-    image: SentinelImg,
+    year: 2025,
+    demo: "https://atakanbakiskan.com",
+    github: "",
+    image: AtakanImg,
     highlight: false,
   },
   {
@@ -420,11 +419,3 @@ export const socialMediaIcons = [
     href: "https://x.com/rodink98",
   },
 ];
-
-// Instead of static imports, use dynamic imports
-export const getProjectImage = async (imageName) => {
-  const { default: image } = await import(
-    `@/assets/images/projects/${imageName}`
-  );
-  return image;
-};

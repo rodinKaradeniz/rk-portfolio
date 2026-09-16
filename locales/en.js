@@ -71,7 +71,7 @@ const en = {
   projectsData: [
     { title: "Archipelago", type: "Semantic Memory System • Web Application", description: "A memory layer for your research — capture articles, write notes, and resurface what you've saved even when you can't remember exactly what you're looking for." },
     { title: "Slotera", type: "Reservation & Session Management • Web Application", description: "A reservation and session-management product for individual service providers — consultants, coaches, instructors, and workshop hosts." },
-    { title: "Sentinel", type: "Fraud & Risk Scoring • Machine Learning", description: "A multi-phase machine learning platform for fraud and risk scoring, built around cost-sensitive evaluation." },
+    { title: "Atakan Bakiskan", type: "Economist • Personal Website", description: "A portfolio website for an economist and PhD student in Economics at the University of Toronto, presenting his research notes, media appearances, and professional background — with a private dashboard for managing content." },
     { title: "Ginny the Bartender", type: "Cocktail Information & Recommendation System • Web & Mobile App", description: "A web and mobile app that allows users to create and share cocktails, and search for cocktails by name or ingredients." },
     { title: "Rokar Africa", type: "Agriculture & Recycling • Company Website", description: "A company website that showcases the company's products and services on agriculture, recycling, and sustainable development." },
     { title: "Rokar Global", type: "Property Management • Company Website", description: "A company website that showcases the company's products and services on construction and property management." },

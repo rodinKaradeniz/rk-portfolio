@@ -6,6 +6,7 @@ import React, {
   useState,
   useRef,
   useEffect,
+  useCallback,
 } from "react";
 
 const AudioContext = createContext();
@@ -16,31 +17,43 @@ export const AudioProvider = ({ children }) => {
   const audioElementRef = useRef(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
+  // Release the audio element on unmount
   useEffect(() => {
-    // Only initialize the audio element on the client side
-    if (typeof window !== "undefined" && !audioElementRef.current) {
-      audioElementRef.current = new Audio("/audio/jazz-vibrant-upbeat.mp3");
-      audioElementRef.current.loop = true; // Ensure audio loops
+    return () => {
+      const audio = audioElementRef.current;
+      if (audio) {
+        audio.pause();
+        audio.removeAttribute("src");
+        audio.load();
+        audioElementRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleAudio = useCallback(() => {
+    // Create the audio element lazily so the mp3 is only downloaded on demand
+    if (!audioElementRef.current) {
+      const audio = new Audio();
+      audio.preload = "none";
+      audio.loop = true;
+      audio.src = "/audio/jazz-vibrant-upbeat.mp3";
+      audioElementRef.current = audio;
+    }
+
+    const audio = audioElementRef.current;
+    if (audio.paused) {
+      audio
+        .play()
+        .then(() => setIsAudioPlaying(true))
+        .catch(() => setIsAudioPlaying(false));
+    } else {
+      audio.pause();
+      setIsAudioPlaying(false);
     }
   }, []);
 
-  useEffect(() => {
-    if (audioElementRef.current) {
-      if (isAudioPlaying) {
-        audioElementRef.current.play();
-      } else {
-        audioElementRef.current.pause();
-      }
-    }
-  }, [isAudioPlaying]);
-
   return (
-    <AudioContext.Provider
-      value={{
-        isAudioPlaying,
-        toggleAudio: () => setIsAudioPlaying((prev) => !prev),
-      }}
-    >
+    <AudioContext.Provider value={{ isAudioPlaying, toggleAudio }}>
       {children}
     </AudioContext.Provider>
   );

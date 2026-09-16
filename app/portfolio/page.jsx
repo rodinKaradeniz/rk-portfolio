@@ -34,6 +34,7 @@ const Archive = () => {
             alt="project_image"
             className="w-full h-full object-cover brightness-[.4] blur-md"
             placeholder="blur"
+            sizes="50vw"
           />
         </motion.div>
 
@@ -161,12 +162,14 @@ const Archive = () => {
                         src={item.image}
                         alt="website-img"
                         className="mb-4 -mr-2 w-[180px] h-[120px] object-cover object-center"
+                        sizes="180px"
                       />
 
                       <Image
                         src={item.image}
                         alt="website-img"
                         className="mt-4 -ml-2 w-[180px] h-[120px] object-cover object-center"
+                        sizes="180px"
                       />
                     </div>
                   )}
@@ -175,16 +178,18 @@ const Archive = () => {
                   <div className="w-full h-1/2 px-2 flex items-center justify-between gap-8">
                     <div className="font-light">{item.description}</div>
 
-                    <a
-                      href={item.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button
-                        IconLeft={icons.arrowupright}
-                        className="!rounded-full !p-4"
-                      />
-                    </a>
+                    {(item.demo || item.github) && (
+                      <a
+                        href={item.demo || item.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button
+                          IconLeft={icons.arrowupright}
+                          className="!rounded-full !p-4"
+                        />
+                      </a>
+                    )}
                   </div>
                 </div>
               }

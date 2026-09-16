@@ -71,7 +71,7 @@ const tr = {
   projectsData: [
     { title: "Archipelago", type: "Anlamsal Hafıza Sistemi • Web Uygulaması", description: "Araştırmalarınız için bir hafıza katmanı — makaleleri kaydedin, notlar yazın ve tam olarak ne aradığınızı hatırlamasanız bile kaydettiklerinizi yeniden bulun." },
     { title: "Slotera", type: "Rezervasyon ve Seans Yönetimi • Web Uygulaması", description: "Bireysel hizmet sağlayıcılar — danışmanlar, koçlar, eğitmenler ve atölye yöneticileri — için bir rezervasyon ve seans yönetim ürünü." },
-    { title: "Sentinel", type: "Dolandırıcılık ve Risk Skorlama • Makine Öğrenmesi", description: "Maliyet duyarlı değerlendirme üzerine kurulu, dolandırıcılık ve risk skorlama için çok aşamalı bir makine öğrenmesi platformu." },
+    { title: "Atakan Bakiskan", type: "Ekonomist • Kişisel Web Sitesi", description: "Toronto Üniversitesi'nde ekonomi doktora öğrencisi olan bir ekonomist için portföy web sitesi; araştırma notlarını, medya görünümlerini ve profesyonel geçmişini sergiliyor, içerikler özel bir yönetim paneli üzerinden yönetiliyor." },
     { title: "Ginny the Bartender", type: "Kokteyl Bilgi ve Öneri Sistemi • Web ve Mobil Uygulama", description: "Kullanıcıların kokteyl oluşturup paylaşabildiği ve isme ya da malzemeye göre arama yapabildiği bir web ve mobil uygulama." },
     { title: "Rokar Africa", type: "Tarım ve Geri Dönüşüm • Şirket Web Sitesi", description: "Tarım, geri dönüşüm ve sürdürülebilir kalkınma alanlarındaki ürün ve hizmetleri sergileyen bir şirket web sitesi." },
     { title: "Rokar Global", type: "Emlak Yönetimi • Şirket Web Sitesi", description: "İnşaat ve emlak yönetimi alanlarındaki ürün ve hizmetleri sergileyen bir şirket web sitesi." },

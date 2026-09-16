@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { AudioProvider } from "@/context/AudioContext";
 import { LenisProvider } from "@/context/LenisContext";
 import { LocaleProvider } from "@/context/LocaleContext";
+import IntroLoader, { INTRO_STORAGE_KEY } from "@/components/IntroLoader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,9 +23,15 @@ export const metadata = {
   description: "RK - Portfolio",
 };
 
+// Runs before paint so returning visitors in the same session never see the intro flash
+const introSeenScript = `try{if(sessionStorage.getItem("${INTRO_STORAGE_KEY}")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}`;
+
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introSeenScript }} />
+      </head>
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f9eddd]`}
@@ -32,6 +39,7 @@ export default function RootLayout({ children }) {
         <LocaleProvider>
           <LenisProvider>
             <AudioProvider>
+              <IntroLoader />
               <Navbar />
               {children}
               <Footer />

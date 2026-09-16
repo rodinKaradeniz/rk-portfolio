@@ -25,7 +25,6 @@ const Services = () => {
           <Image
             src={WorkImg}
             alt="rk"
-            quality={100}
             className="absolute w-full h-full object-cover z-[-1] brightness-[.4]"
           />
           <div className="absolute inset-0 z-[-1] backdrop-blur-sm"></div>

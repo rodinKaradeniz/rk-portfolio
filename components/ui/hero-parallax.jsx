@@ -171,6 +171,7 @@ const ProductCard = ({ product, translate }) => {
           src={product.image}
           height="400"
           width="400"
+          sizes="384px"
           className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />

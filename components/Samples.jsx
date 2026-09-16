@@ -28,7 +28,7 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
     if (updateInfoRef.current) updateInfoRef.current(lastCycleRef.current);
   }, [t]);
 
-  useGSAP(() => {
+  useGSAP((context, contextSafe) => {
     if (pathname === "/" && lenis) {
       // Cache DOM elements
       if (!domRefs.current.pinnedSection) {
@@ -175,6 +175,14 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
 
       let lastCycle = 0;
 
+      // Drive the progress bar with a single reusable tween instead of one per scroll tick
+      const setProgress = progressBar
+        ? gsap.quickTo(progressBar, "scaleY", { duration: 0.1 })
+        : null;
+      if (progressBar) {
+        gsap.set(progressBar, { height: "100%", scaleY: 0, transformOrigin: "top" });
+      }
+
       ScrollTrigger.create({
         trigger: pinnedSection,
         start: "top top",
@@ -182,7 +190,8 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
         pin: true,
         pinSpacing: true,
         scrub: 0.1,
-        onUpdate: (self) => {
+        // contextSafe ensures tweens created on scroll are reverted on unmount
+        onUpdate: contextSafe((self) => {
           const totalProgress = self.progress * images.length;
           const currentCycle = Math.floor(totalProgress);
           const cycleProgress = (totalProgress % 1) * 100;
@@ -203,19 +212,13 @@ const useGSAPAnimations = (pathname, highlightedProjects, t) => {
             }
           }
 
-          if (progressBar) {
-            gsap.to(progressBar, {
-              height: `${cycleProgress}%`,
-              duration: 0.1,
-              overwrite: true,
-            });
-          }
-        },
+          if (setProgress) setProgress(cycleProgress / 100);
+        }),
       });
     }
 
+    // useGSAP reverts its own context (ScrollTrigger + tweens) on unmount
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       domRefs.current = {};
       updateInfoRef.current = null;
       lastCycleRef.current = 0;
